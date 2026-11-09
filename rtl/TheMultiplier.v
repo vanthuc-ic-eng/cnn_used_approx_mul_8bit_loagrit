@@ -9,7 +9,7 @@
 // ==============================================================================
 
 module TheMultiplier #(
-    parameter integer MODE      = 0,
+    parameter integer MODE      = 1,
     parameter integer IS_LOG8_A = 0,
     parameter integer IS_LOG8_B = 1
 )(
