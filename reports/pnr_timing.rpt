@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-| Date         : Mon Nov  9 23:00:48 2026
+| Date         : Mon Nov  9 23:03:37 2026
 | Host         : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
 | Command      : report_timing_summary -file reports/pnr_timing.rpt
 | Design       : top_cnn
@@ -138,7 +138,7 @@ Table of Contents
 
     WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
     -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-      3.634        0.000                      0                 7141        0.043        0.000                      0                 7141        9.500        0.000                       0                  3549  
+      4.820        0.000                      0                 7141        0.050        0.000                      0                 7141        9.500        0.000                       0                  3549  
 
 
 All user specified timing constraints are met.
@@ -161,7 +161,7 @@ sys_clk_pin  {0.000 10.000}     20.000          50.000
 
 Clock             WNS(ns)      TNS(ns)  TNS Failing Endpoints  TNS Total Endpoints      WHS(ns)      THS(ns)  THS Failing Endpoints  THS Total Endpoints     WPWS(ns)     TPWS(ns)  TPWS Failing Endpoints  TPWS Total Endpoints  
 -----             -------      -------  ---------------------  -------------------      -------      -------  ---------------------  -------------------     --------     --------  ----------------------  --------------------  
-sys_clk_pin         3.634        0.000                      0                 7141        0.043        0.000                      0                 7141        9.500        0.000                       0                  3549  
+sys_clk_pin         4.820        0.000                      0                 7141        0.050        0.000                      0                 7141        9.500        0.000                       0                  3549  
 
 
 ------------------------------------------------------------------------------------------------
@@ -192,26 +192,26 @@ Path Group    From Clock    To Clock          WNS(ns)      TNS(ns)  TNS Failing 
 From Clock:  sys_clk_pin
   To Clock:  sys_clk_pin
 
-Setup :            0  Failing Endpoints,  Worst Slack        3.634ns,  Total Violation        0.000ns
-Hold  :            0  Failing Endpoints,  Worst Slack        0.043ns,  Total Violation        0.000ns
+Setup :            0  Failing Endpoints,  Worst Slack        4.820ns,  Total Violation        0.000ns
+Hold  :            0  Failing Endpoints,  Worst Slack        0.050ns,  Total Violation        0.000ns
 PW    :            0  Failing Endpoints,  Worst Slack        9.500ns,  Total Violation        0.000ns
 ---------------------------------------------------------------------------------------------------
 
 
 Max Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             3.634ns  (required time - arrival time)
-  Source:                 dense_layer/a_reg[3]/C
+Slack (MET) :             4.820ns  (required time - arrival time)
+  Source:                 dense_layer/a_reg[7]/C
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
-  Destination:            dense_layer/neuron_reg[5][130]/D
+  Destination:            dense_layer/neuron_reg[7][146]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Setup (Max at Slow Process Corner)
   Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        15.937ns  (logic 7.582ns (47.576%)  route 8.355ns (52.424%))
-  Logic Levels:           43  (CARRY4=34 LUT2=1 LUT3=1 LUT4=2 LUT5=1 LUT6=4)
-  Clock Path Skew:        -0.098ns (DCD - SCD + CPR)
-    Destination Clock Delay (DCD):    4.959ns = ( 24.959 - 20.000 ) 
+  Data Path Delay:        14.769ns  (logic 7.064ns (47.830%)  route 7.705ns (52.170%))
+  Logic Levels:           40  (CARRY4=34 LUT2=1 LUT3=1 LUT4=1 LUT5=1 LUT6=2)
+  Clock Path Skew:        -0.101ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.956ns = ( 24.956 - 20.000 ) 
     Source Clock Delay      (SCD):    5.347ns
     Clock Pessimism Removal (CPR):    0.291ns
   Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
@@ -230,131 +230,125 @@ Slack (MET) :             3.634ns  (required time - arrival time)
                          net (fo=1, routed)           2.076     3.567    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_bufg/O
                          net (fo=3548, routed)        1.679     5.347    dense_layer/clk_i
-    SLICE_X10Y14         FDCE                                         r  dense_layer/a_reg[3]/C
+    SLICE_X10Y13         FDCE                                         r  dense_layer/a_reg[7]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X10Y14         FDCE (Prop_fdce_C_Q)         0.518     5.865 f  dense_layer/a_reg[3]/Q
-                         net (fo=8, routed)           1.044     6.909    dense_layer/a_reg_n_0_[3]
-    SLICE_X12Y15         LUT6 (Prop_lut6_I1_O)        0.124     7.033 r  dense_layer/neuron[1][19]_i_31/O
-                         net (fo=3, routed)           0.690     7.723    dense_layer/neuron[1][19]_i_31_n_0
-    SLICE_X12Y14         LUT3 (Prop_lut3_I1_O)        0.153     7.876 r  dense_layer/neuron[1][19]_i_49/O
-                         net (fo=5, routed)           0.540     8.416    dense_layer/neuron[1][19]_i_49_n_0
-    SLICE_X13Y14         LUT6 (Prop_lut6_I4_O)        0.331     8.747 r  dense_layer/neuron[1][19]_i_62/O
-                         net (fo=1, routed)           0.541     9.289    dense_layer/neuron[1][19]_i_62_n_0
-    SLICE_X13Y14         LUT4 (Prop_lut4_I0_O)        0.124     9.413 r  dense_layer/neuron[1][19]_i_33/O
-                         net (fo=2, routed)           0.543     9.956    dense_layer/neuron[1][19]_i_33_n_0
-    SLICE_X15Y14         LUT5 (Prop_lut5_I0_O)        0.124    10.080 r  dense_layer/u_lutalm_core/neuron[1][19]_i_37/O
-                         net (fo=1, routed)           0.000    10.080    dense_layer/u_lutalm_core/neuron[1][19]_i_37_n_0
-    SLICE_X15Y14         CARRY4 (Prop_carry4_S[2]_CO[3])
-                                                      0.398    10.478 r  dense_layer/neuron_reg[1][19]_i_21/CO[3]
-                         net (fo=1, routed)           0.000    10.478    dense_layer/neuron_reg[1][19]_i_21_n_0
-    SLICE_X15Y15         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.114    10.592 r  dense_layer/neuron_reg[1][19]_i_18/CO[3]
-                         net (fo=1, routed)           0.000    10.592    dense_layer/neuron_reg[1][19]_i_18_n_0
-    SLICE_X15Y16         CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.271    10.863 r  dense_layer/neuron_reg[1][19]_i_17/CO[0]
-                         net (fo=15, routed)          1.137    12.000    dense_layer/mult/gen_mode_ultra_balanced.frac_w[8]
-    SLICE_X18Y10         LUT2 (Prop_lut2_I0_O)        0.399    12.399 r  dense_layer/neuron[1][11]_i_26/O
-                         net (fo=1, routed)           0.303    12.702    dense_layer/neuron[1][11]_i_26_n_0
-    SLICE_X18Y11         LUT6 (Prop_lut6_I5_O)        0.326    13.028 r  dense_layer/neuron[1][11]_i_21/O
-                         net (fo=1, routed)           0.470    13.499    dense_layer/neuron[1][11]_i_21_n_0
-    SLICE_X20Y8          LUT6 (Prop_lut6_I2_O)        0.124    13.623 r  dense_layer/neuron[1][11]_i_9/O
-                         net (fo=1, routed)           0.000    13.623    dense_layer/neuron[1][11]_i_9_n_0
-    SLICE_X20Y8          CARRY4 (Prop_carry4_S[1]_CO[3])
-                                                      0.533    14.156 r  dense_layer/neuron_reg[1][11]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.156    dense_layer/neuron_reg[1][11]_i_2_n_0
+    SLICE_X10Y13         FDCE (Prop_fdce_C_Q)         0.518     5.865 r  dense_layer/a_reg[7]/Q
+                         net (fo=25, routed)          1.164     7.030    dense_layer/a_reg_n_0_[7]
+    SLICE_X15Y11         LUT2 (Prop_lut2_I0_O)        0.150     7.180 r  dense_layer/neuron[1][15]_i_61/O
+                         net (fo=1, routed)           0.824     8.003    dense_layer/neuron[1][15]_i_61_n_0
+    SLICE_X17Y10         LUT6 (Prop_lut6_I4_O)        0.326     8.329 r  dense_layer/neuron[1][15]_i_39/O
+                         net (fo=2, routed)           0.576     8.905    dense_layer/neuron[1][15]_i_39_n_0
+    SLICE_X15Y8          LUT3 (Prop_lut3_I0_O)        0.124     9.029 r  dense_layer/u_lutalm_core/neuron[1][15]_i_43/O
+                         net (fo=1, routed)           0.000     9.029    dense_layer/u_lutalm_core/neuron[1][15]_i_43_n_0
+    SLICE_X15Y8          CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401     9.430 r  dense_layer/neuron_reg[1][15]_i_27/CO[3]
+                         net (fo=1, routed)           0.000     9.430    dense_layer/neuron_reg[1][15]_i_27_n_0
+    SLICE_X15Y9          CARRY4 (Prop_carry4_CI_O[0])
+                                                      0.222     9.652 r  dense_layer/neuron_reg[1][15]_i_13/O[0]
+                         net (fo=7, routed)           0.942    10.594    dense_layer/mult/data0[0]
+    SLICE_X18Y9          LUT5 (Prop_lut5_I3_O)        0.325    10.919 r  dense_layer/neuron[1][15]_i_24/O
+                         net (fo=3, routed)           0.990    11.909    dense_layer/neuron[1][15]_i_24_n_0
+    SLICE_X20Y7          LUT6 (Prop_lut6_I3_O)        0.326    12.235 r  dense_layer/neuron[1][7]_i_10/O
+                         net (fo=1, routed)           0.000    12.235    dense_layer/neuron[1][7]_i_10_n_0
+    SLICE_X20Y7          CARRY4 (Prop_carry4_S[0]_CO[3])
+                                                      0.513    12.748 r  dense_layer/neuron_reg[1][7]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.748    dense_layer/neuron_reg[1][7]_i_2_n_0
+    SLICE_X20Y8          CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.117    12.865 r  dense_layer/neuron_reg[1][11]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.865    dense_layer/neuron_reg[1][11]_i_2_n_0
     SLICE_X20Y9          CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    14.273 r  dense_layer/neuron_reg[1][15]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.273    dense_layer/neuron_reg[1][15]_i_2_n_0
+                                                      0.117    12.982 r  dense_layer/neuron_reg[1][15]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    12.982    dense_layer/neuron_reg[1][15]_i_2_n_0
     SLICE_X20Y10         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    14.390 r  dense_layer/neuron_reg[1][19]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.390    dense_layer/neuron_reg[1][19]_i_2_n_0
+                                                      0.117    13.099 r  dense_layer/neuron_reg[1][19]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.099    dense_layer/neuron_reg[1][19]_i_2_n_0
     SLICE_X20Y11         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    14.507 r  dense_layer/neuron_reg[1][23]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.507    dense_layer/neuron_reg[1][23]_i_2_n_0
+                                                      0.117    13.216 r  dense_layer/neuron_reg[1][23]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.216    dense_layer/neuron_reg[1][23]_i_2_n_0
     SLICE_X20Y12         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    14.624 r  dense_layer/neuron_reg[1][27]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.624    dense_layer/neuron_reg[1][27]_i_2_n_0
+                                                      0.117    13.333 r  dense_layer/neuron_reg[1][27]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.333    dense_layer/neuron_reg[1][27]_i_2_n_0
     SLICE_X20Y13         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    14.741 r  dense_layer/neuron_reg[1][31]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.741    dense_layer/neuron_reg[1][31]_i_2_n_0
+                                                      0.117    13.450 r  dense_layer/neuron_reg[1][31]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.450    dense_layer/neuron_reg[1][31]_i_2_n_0
     SLICE_X20Y14         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    14.858 r  dense_layer/neuron_reg[1][35]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.858    dense_layer/neuron_reg[1][35]_i_2_n_0
+                                                      0.117    13.567 r  dense_layer/neuron_reg[1][35]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.567    dense_layer/neuron_reg[1][35]_i_2_n_0
     SLICE_X20Y15         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    14.975 r  dense_layer/neuron_reg[1][39]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    14.975    dense_layer/neuron_reg[1][39]_i_2_n_0
+                                                      0.117    13.684 r  dense_layer/neuron_reg[1][39]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.684    dense_layer/neuron_reg[1][39]_i_2_n_0
     SLICE_X20Y16         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.092 r  dense_layer/neuron_reg[1][43]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.092    dense_layer/neuron_reg[1][43]_i_2_n_0
+                                                      0.117    13.801 r  dense_layer/neuron_reg[1][43]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.801    dense_layer/neuron_reg[1][43]_i_2_n_0
     SLICE_X20Y17         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.209 r  dense_layer/neuron_reg[1][47]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.209    dense_layer/neuron_reg[1][47]_i_2_n_0
+                                                      0.117    13.918 r  dense_layer/neuron_reg[1][47]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    13.918    dense_layer/neuron_reg[1][47]_i_2_n_0
     SLICE_X20Y18         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.326 r  dense_layer/neuron_reg[1][51]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.326    dense_layer/neuron_reg[1][51]_i_2_n_0
+                                                      0.117    14.035 r  dense_layer/neuron_reg[1][51]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.035    dense_layer/neuron_reg[1][51]_i_2_n_0
     SLICE_X20Y19         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.443 r  dense_layer/neuron_reg[1][55]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.443    dense_layer/neuron_reg[1][55]_i_2_n_0
+                                                      0.117    14.152 r  dense_layer/neuron_reg[1][55]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.152    dense_layer/neuron_reg[1][55]_i_2_n_0
     SLICE_X20Y20         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.560 r  dense_layer/neuron_reg[1][59]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.560    dense_layer/neuron_reg[1][59]_i_2_n_0
+                                                      0.117    14.269 r  dense_layer/neuron_reg[1][59]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.269    dense_layer/neuron_reg[1][59]_i_2_n_0
     SLICE_X20Y21         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.677 r  dense_layer/neuron_reg[1][63]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.677    dense_layer/neuron_reg[1][63]_i_2_n_0
+                                                      0.117    14.386 r  dense_layer/neuron_reg[1][63]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.386    dense_layer/neuron_reg[1][63]_i_2_n_0
     SLICE_X20Y22         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.794 r  dense_layer/neuron_reg[1][67]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.794    dense_layer/neuron_reg[1][67]_i_2_n_0
+                                                      0.117    14.503 r  dense_layer/neuron_reg[1][67]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.503    dense_layer/neuron_reg[1][67]_i_2_n_0
     SLICE_X20Y23         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    15.911 r  dense_layer/neuron_reg[1][71]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    15.911    dense_layer/neuron_reg[1][71]_i_2_n_0
+                                                      0.117    14.620 r  dense_layer/neuron_reg[1][71]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.620    dense_layer/neuron_reg[1][71]_i_2_n_0
     SLICE_X20Y24         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.028 r  dense_layer/neuron_reg[1][75]_i_2/CO[3]
-                         net (fo=1, routed)           0.009    16.037    dense_layer/neuron_reg[1][75]_i_2_n_0
+                                                      0.117    14.737 r  dense_layer/neuron_reg[1][75]_i_2/CO[3]
+                         net (fo=1, routed)           0.009    14.746    dense_layer/neuron_reg[1][75]_i_2_n_0
     SLICE_X20Y25         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.154 r  dense_layer/neuron_reg[1][79]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.154    dense_layer/neuron_reg[1][79]_i_2_n_0
+                                                      0.117    14.863 r  dense_layer/neuron_reg[1][79]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.863    dense_layer/neuron_reg[1][79]_i_2_n_0
     SLICE_X20Y26         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.271 r  dense_layer/neuron_reg[1][83]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.271    dense_layer/neuron_reg[1][83]_i_2_n_0
+                                                      0.117    14.980 r  dense_layer/neuron_reg[1][83]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    14.980    dense_layer/neuron_reg[1][83]_i_2_n_0
     SLICE_X20Y27         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.388 r  dense_layer/neuron_reg[1][87]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.388    dense_layer/neuron_reg[1][87]_i_2_n_0
+                                                      0.117    15.097 r  dense_layer/neuron_reg[1][87]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.097    dense_layer/neuron_reg[1][87]_i_2_n_0
     SLICE_X20Y28         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.505 r  dense_layer/neuron_reg[1][91]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.505    dense_layer/neuron_reg[1][91]_i_2_n_0
+                                                      0.117    15.214 r  dense_layer/neuron_reg[1][91]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.214    dense_layer/neuron_reg[1][91]_i_2_n_0
     SLICE_X20Y29         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.622 r  dense_layer/neuron_reg[1][95]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.622    dense_layer/neuron_reg[1][95]_i_2_n_0
+                                                      0.117    15.331 r  dense_layer/neuron_reg[1][95]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.331    dense_layer/neuron_reg[1][95]_i_2_n_0
     SLICE_X20Y30         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.739 r  dense_layer/neuron_reg[1][99]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.739    dense_layer/neuron_reg[1][99]_i_2_n_0
+                                                      0.117    15.448 r  dense_layer/neuron_reg[1][99]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.448    dense_layer/neuron_reg[1][99]_i_2_n_0
     SLICE_X20Y31         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.856 r  dense_layer/neuron_reg[1][103]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.856    dense_layer/neuron_reg[1][103]_i_2_n_0
+                                                      0.117    15.565 r  dense_layer/neuron_reg[1][103]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.565    dense_layer/neuron_reg[1][103]_i_2_n_0
     SLICE_X20Y32         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    16.973 r  dense_layer/neuron_reg[1][107]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    16.973    dense_layer/neuron_reg[1][107]_i_2_n_0
+                                                      0.117    15.682 r  dense_layer/neuron_reg[1][107]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.682    dense_layer/neuron_reg[1][107]_i_2_n_0
     SLICE_X20Y33         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    17.090 r  dense_layer/neuron_reg[1][111]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    17.090    dense_layer/neuron_reg[1][111]_i_2_n_0
+                                                      0.117    15.799 r  dense_layer/neuron_reg[1][111]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.799    dense_layer/neuron_reg[1][111]_i_2_n_0
     SLICE_X20Y34         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    17.207 r  dense_layer/neuron_reg[1][115]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    17.207    dense_layer/neuron_reg[1][115]_i_2_n_0
+                                                      0.117    15.916 r  dense_layer/neuron_reg[1][115]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    15.916    dense_layer/neuron_reg[1][115]_i_2_n_0
     SLICE_X20Y35         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    17.324 r  dense_layer/neuron_reg[1][119]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    17.324    dense_layer/neuron_reg[1][119]_i_2_n_0
+                                                      0.117    16.033 r  dense_layer/neuron_reg[1][119]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.033    dense_layer/neuron_reg[1][119]_i_2_n_0
     SLICE_X20Y36         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    17.441 r  dense_layer/neuron_reg[1][123]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    17.441    dense_layer/neuron_reg[1][123]_i_2_n_0
+                                                      0.117    16.150 r  dense_layer/neuron_reg[1][123]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.150    dense_layer/neuron_reg[1][123]_i_2_n_0
     SLICE_X20Y37         CARRY4 (Prop_carry4_CI_CO[3])
-                                                      0.117    17.558 r  dense_layer/neuron_reg[1][127]_i_2/CO[3]
-                         net (fo=1, routed)           0.000    17.558    dense_layer/neuron_reg[1][127]_i_2_n_0
+                                                      0.117    16.267 r  dense_layer/neuron_reg[1][127]_i_2/CO[3]
+                         net (fo=1, routed)           0.000    16.267    dense_layer/neuron_reg[1][127]_i_2_n_0
     SLICE_X20Y38         CARRY4 (Prop_carry4_CI_CO[0])
-                                                      0.254    17.812 r  dense_layer/neuron_reg[1][255]_i_4/CO[0]
-                         net (fo=128, routed)         1.414    19.226    dense_layer/neuron_reg[1][255]_i_4_n_3
-    SLICE_X21Y26         LUT4 (Prop_lut4_I2_O)        0.396    19.622 r  dense_layer/neuron[1][130]_i_1/O
-                         net (fo=10, routed)          1.662    21.284    dense_layer/neuron[1][130]_i_1_n_0
-    SLICE_X36Y29         FDCE                                         r  dense_layer/neuron_reg[5][130]/D
+                                                      0.254    16.521 r  dense_layer/neuron_reg[1][255]_i_4/CO[0]
+                         net (fo=128, routed)         2.020    18.541    dense_layer/neuron_reg[1][255]_i_4_n_3
+    SLICE_X26Y24         LUT4 (Prop_lut4_I2_O)        0.395    18.936 r  dense_layer/neuron[1][146]_i_1/O
+                         net (fo=10, routed)          1.181    20.116    dense_layer/neuron[1][146]_i_1_n_0
+    SLICE_X37Y27         FDCE                                         r  dense_layer/neuron_reg[7][146]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -364,16 +358,16 @@ Slack (MET) :             3.634ns  (required time - arrival time)
     L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
                          net (fo=1, routed)           1.880    23.301    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_bufg/O
-                         net (fo=3548, routed)        1.567    24.959    dense_layer/clk_i
-    SLICE_X36Y29         FDCE                                         r  dense_layer/neuron_reg[5][130]/C
-                         clock pessimism              0.291    25.250    
-                         clock uncertainty           -0.035    25.214    
-    SLICE_X36Y29         FDCE (Setup_fdce_C_D)       -0.296    24.918    dense_layer/neuron_reg[5][130]
+                         net (fo=3548, routed)        1.564    24.956    dense_layer/clk_i
+    SLICE_X37Y27         FDCE                                         r  dense_layer/neuron_reg[7][146]/C
+                         clock pessimism              0.291    25.247    
+                         clock uncertainty           -0.035    25.211    
+    SLICE_X37Y27         FDCE (Setup_fdce_C_D)       -0.275    24.936    dense_layer/neuron_reg[7][146]
   -------------------------------------------------------------------
-                         required time                         24.918    
-                         arrival time                         -21.284    
+                         required time                         24.936    
+                         arrival time                         -20.116    
   -------------------------------------------------------------------
-                         slack                                  3.634    
+                         slack                                  4.820    
 
 
 
@@ -381,19 +375,19 @@ Slack (MET) :             3.634ns  (required time - arrival time)
 
 Min Delay Paths
 --------------------------------------------------------------------------------------
-Slack (MET) :             0.043ns  (arrival time - required time)
-  Source:                 conv/reg_conv_out_reg[29]/C
-                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
-  Destination:            conv/dout_write_reg[29]/D
+Slack (MET) :             0.050ns  (arrival time - required time)
+  Source:                 conv_rom/data_reg[5]/C
+                            (rising edge-triggered cell FDRE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            conv/kernel_weights_reg[69]/D
                             (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
   Path Group:             sys_clk_pin
   Path Type:              Hold (Min at Fast Process Corner)
   Requirement:            0.000ns  (sys_clk_pin rise@0.000ns - sys_clk_pin rise@0.000ns)
-  Data Path Delay:        0.375ns  (logic 0.141ns (37.556%)  route 0.234ns (62.444%))
+  Data Path Delay:        0.373ns  (logic 0.141ns (37.787%)  route 0.232ns (62.213%))
   Logic Levels:           0  
-  Clock Path Skew:        0.266ns (DCD - SCD - CPR)
-    Destination Clock Delay (DCD):    1.991ns
-    Source Clock Delay      (SCD):    1.473ns
+  Clock Path Skew:        0.260ns (DCD - SCD - CPR)
+    Destination Clock Delay (DCD):    1.990ns
+    Source Clock Delay      (SCD):    1.478ns
     Clock Pessimism Removal (CPR):    0.252ns
 
     Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
@@ -405,12 +399,12 @@ Slack (MET) :             0.043ns  (arrival time - required time)
     L16                  IBUF (Prop_ibuf_I_O)         0.259     0.259 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.627     0.886    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.026     0.912 r  clk_bufg/O
-                         net (fo=3548, routed)        0.561     1.473    conv/clk_i
-    SLICE_X25Y8          FDCE                                         r  conv/reg_conv_out_reg[29]/C
+                         net (fo=3548, routed)        0.566     1.478    conv_rom/clk_i
+    SLICE_X19Y1          FDRE                                         r  conv_rom/data_reg[5]/C
   -------------------------------------------------------------------    -------------------
-    SLICE_X25Y8          FDCE (Prop_fdce_C_Q)         0.141     1.614 r  conv/reg_conv_out_reg[29]/Q
-                         net (fo=1, routed)           0.234     1.848    conv/reg_conv_out[29]
-    SLICE_X15Y7          FDCE                                         r  conv/dout_write_reg[29]/D
+    SLICE_X19Y1          FDRE (Prop_fdre_C_Q)         0.141     1.619 r  conv_rom/data_reg[5]/Q
+                         net (fo=6, routed)           0.232     1.851    conv/kernel_weights_reg[71]_0[5]
+    SLICE_X24Y2          FDCE                                         r  conv/kernel_weights_reg[69]/D
   -------------------------------------------------------------------    -------------------
 
                          (clock sys_clk_pin rise edge)
@@ -420,15 +414,15 @@ Slack (MET) :             0.043ns  (arrival time - required time)
     L16                  IBUF (Prop_ibuf_I_O)         0.447     0.447 r  clk_IBUF_inst/O
                          net (fo=1, routed)           0.683     1.130    clk_IBUF
     BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.029     1.159 r  clk_bufg/O
-                         net (fo=3548, routed)        0.832     1.991    conv/clk_i
-    SLICE_X15Y7          FDCE                                         r  conv/dout_write_reg[29]/C
-                         clock pessimism             -0.252     1.739    
-    SLICE_X15Y7          FDCE (Hold_fdce_C_D)         0.066     1.805    conv/dout_write_reg[29]
+                         net (fo=3548, routed)        0.831     1.990    conv/clk_i
+    SLICE_X24Y2          FDCE                                         r  conv/kernel_weights_reg[69]/C
+                         clock pessimism             -0.252     1.738    
+    SLICE_X24Y2          FDCE (Hold_fdce_C_D)         0.063     1.801    conv/kernel_weights_reg[69]
   -------------------------------------------------------------------
-                         required time                         -1.805    
-                         arrival time                           1.848    
+                         required time                         -1.801    
+                         arrival time                           1.851    
   -------------------------------------------------------------------
-                         slack                                  0.043    
+                         slack                                  0.050    
 
 
 
@@ -442,9 +436,9 @@ Period(ns):         20.000
 Sources:            { clk }
 
 Check Type        Corner  Lib Pin             Reference Pin  Required(ns)  Actual(ns)  Slack(ns)  Location     Pin
-Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.576         20.000      17.424     RAMB36_X0Y1  bram_28x28x32/mem_reg/CLKARDCLK
-Low Pulse Width   Slow    FDCE/C              n/a            0.500         10.000      9.500      SLICE_X9Y9   FSM_sequential_state_reg[0]/C
-High Pulse Width  Slow    FDCE/C              n/a            0.500         10.000      9.500      SLICE_X9Y9   FSM_sequential_state_reg[0]/C
+Min Period        n/a     RAMB36E1/CLKARDCLK  n/a            2.576         20.000      17.424     RAMB36_X0Y2  bram_28x28x32/mem_reg/CLKARDCLK
+Low Pulse Width   Slow    FDCE/C              n/a            0.500         10.000      9.500      SLICE_X4Y8   FSM_sequential_state_reg[0]/C
+High Pulse Width  Slow    FDCE/C              n/a            0.500         10.000      9.500      SLICE_X4Y8   FSM_sequential_state_reg[0]/C
 
 
 

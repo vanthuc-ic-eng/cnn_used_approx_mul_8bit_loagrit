@@ -10,7 +10,7 @@
 // ==============================================================================
 
 module TheMultiplier #(
-    parameter integer MODE = 0
+    parameter integer MODE = 1
 )(
     input  wire signed [7:0]  a,
     input  wire signed [7:0]  b,
