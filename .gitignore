@@ -1,0 +1,10 @@
+# EDA build and log artifacts
+.Xil/
+xsim.dir/
+*.jou
+*.log
+*.pb
+*.backup.*
+reports/vivado_pnr.log
+sim/predict_output.csv
+data/MNIST_Images
