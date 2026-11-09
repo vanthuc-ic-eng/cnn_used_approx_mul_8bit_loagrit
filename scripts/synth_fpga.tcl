@@ -30,5 +30,5 @@ report_utilization -file reports/pnr_util.rpt
 report_timing_summary -file reports/pnr_timing.rpt
 report_power -file reports/pnr_power.rpt
 
-puts "\n[PASS] FPGA Implementation Complete: reports/pnr_util.rpt"
+puts "\n\[PASS\] FPGA Implementation Complete: reports/pnr_util.rpt"
 exit

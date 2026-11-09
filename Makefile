@@ -22,19 +22,19 @@ help:
 	@echo "================================================================================"
 
 sim:
-	@mkdir -p sim
+	@mkdir -p sim results
 	@echo ">>> [1/2] Compiling and Elaborating Simulation with Vivado xvlog/xelab..."
 	@xvlog -nolog rtl/*.v sim/tb_test.v
 	@xelab -nolog -top tb_test -s sim_snapshot
 	@echo ">>> [2/2] Running Simulation (+NUM_IMAGES=$(NUM_IMAGES))..."
-	@xsim sim_snapshot -nolog -R --testplusarg NUM_IMAGES=$(NUM_IMAGES)
-	@python3 scripts/eval_accuracy.py sim/predict_output.csv data/ground_truth_labels.csv
+	@xsim sim_snapshot -nolog -R --testplusarg NUM_IMAGES=$(NUM_IMAGES) --testplusarg OUT_CSV=results/predict_output.csv
+	@python3 scripts/eval_accuracy.py results/predict_output.csv data/ground_truth_labels.csv
 
 sim-full:
 	@$(MAKE) sim NUM_IMAGES=1000
 
 eval:
-	@python3 scripts/eval_accuracy.py sim/predict_output.csv data/ground_truth_labels.csv
+	@python3 scripts/eval_accuracy.py results/predict_output.csv data/ground_truth_labels.csv
 
 fpga:
 	@mkdir -p reports
@@ -44,4 +44,4 @@ fpga:
 	@grep -A 8 "Design Timing Summary" reports/pnr_timing.rpt || true
 
 clean:
-	@rm -rf xsim.dir .Xil reports/vivado_pnr.log sim/predict_output.csv *.jou *.log *.pb
+	@rm -rf xsim.dir .Xil reports/vivado_pnr.log results/predict_output.csv *.jou *.log *.pb clockInfo.txt

@@ -51,13 +51,25 @@ module tb_test;
     task load_image(input integer idx);
         reg [255*8:0] filename;
         begin
-            $sformat(filename, "<...>/MNIST_Images/image_%04d_bin.txt", idx);
-//            $display("\n[INFO] Loading image from file: %s", filename);
+            $sformat(filename, "data/MNIST_Images/image_%04d_bin.txt", idx);
             $readmemb(filename, image);
         end
     endtask
 
+    integer max_images = 1000;
+    reg [255*8:0] out_csv_path;
+
     initial begin
+        out_csv_path = "results/predict_output.csv";
+        if ($value$plusargs("OUT_CSV=%s", out_csv_path)) begin
+            $display("[INFO] Output CSV will be written to: %0s", out_csv_path);
+        end
+        if ($value$plusargs("NUM_IMAGES=%d", max_images)) begin
+            $display("[INFO] Running with NUM_IMAGES = %0d", max_images);
+        end else begin
+            max_images = 1000;
+        end
+
         #10 @(posedge clk);
         $display("[INFO] Da gui tin hieu reset de bat dau padding tai thoi diem %0t", $time);
         reset = 1;
@@ -65,24 +77,26 @@ module tb_test;
         reset = 0;
         
         // Mở file CSV để ghi kết quả
-        file = $fopen("D:/<...>.csv", "w");
+        file = $fopen(out_csv_path, "w");
         if (!file) begin
-//            $display("[ERROR] Khong mo duoc file output!");
+            $display("[ERROR] Khong mo duoc file: %0s!", out_csv_path);
             $finish;
         end
         $fwrite(file, "ImageIndex,Predict\n"); // Header
 
-        // Lặp qua 1000 ảnh từ image_0000 đến image_0999
-        for (img_index = 0; img_index < 1000; img_index = img_index + 1) begin
+        // Lặp qua max_images ảnh từ image_0000
+        for (img_index = 0; img_index < max_images; img_index = img_index + 1) begin
+            if (img_index % 100 == 0 || img_index == max_images - 1) begin
+                $display("[PROGRESS] Simulating image %0d / %0d...", img_index, max_images);
+            end
             i = 0;
             load_image(img_index);
             
 
             // Đợi hệ thống sẵn sàng
             wait (ready == 1);
-//            $display("[INFO] Ready to receive image %0d at time %0t", img_index, $time);
 
-            // Gửi từng pixel (logic đúng như bạn mong muốn)
+            // Gửi từng pixel
             while (i < 784) begin
                 @(posedge clk);
                 if (ready) begin
@@ -90,23 +104,20 @@ module tb_test;
                     lock_pixel <= 1;
                     @(posedge clk);
                     lock_pixel <= 0;
-//                    $display("[PIXEL] image[%0d] = %0d tại %0t", i, image[i], $time);
                     i = i + 1;
-                    wait (ready == 1); // Đợi tín hiệu ready được bật lại sau mỗi pixel
+                    wait (ready == 1);
                 end
             end
 
             // Đợi tính toán
-//            $display("[INFO] Sent full image %0d, waiting for prediction...", img_index);
             wait (calculating == 1);
             wait (calculating == 0);
 
-//            $display("[PREDICT] image %0d → %0d tại thời điểm %0t", img_index, predict, $time);
             $fwrite(file, "%0d,%0d\n", img_index, predict);
         end
 
         $fclose(file);
-//        $display("\n[INFO] Đã mô phỏng xong 1000 ảnh. File kết quả: results/predict_output.csv");
+        $display("\n[INFO] Simulation complete for %0d images. Results in: %0s", max_images, out_csv_path);
         $finish;
     end
 
