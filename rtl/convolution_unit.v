@@ -1,22 +1,9 @@
 `timescale 1ns / 1ps
-// ==============================================================================
-// BLOCK FLOATING-POINT (SHARED EXPONENT) CONVOLUTION UNIT - V3 ARCHITECTURE
-// Team: Conquerors (NGUYEN VAN THUC - 24161421)
-//
-// Key Innovations:
-//   1. 9-input parallel Log8-Nano exponent & mantissa extraction.
-//   2. High-speed 4-bit Maximum Exponent tree (Emax = max(exp0..exp8)).
-//   3. Dynamic mantissa right-alignment relative to Emax (0-to-9 bit shifters).
-//   4. 9-operand narrow 14-bit signed mantissa accumulation.
-//   5. SINGLE SHARED 14-bit Antilog Barrel Shifter (eliminates 8 barrel shifters!).
-// ==============================================================================
-
 module convolution_unit (
-    input  wire [8*9-1:0]      pixel_bus,      // 9 Log8-Nano pixels from BRAM
-    input  wire [8*9-1:0]      kernel_weights, // 9 Log8-Nano weights from ROM
+    input  wire [8*9-1:0]      pixel_bus,
+    input  wire [8*9-1:0]      kernel_weights,
     output wire signed [31:0]  conv_out
 );
-
     wire [7:0] pixel  [8:0];
     wire [7:0] kernel [8:0];
 
@@ -40,7 +27,6 @@ module convolution_unit (
     assign kernel[7] = kernel_weights[63:56];
     assign kernel[8] = kernel_weights[71:64];
 
-    // Step 1: 9-input Parallel Sign, Zero, Exp, and Mantissa Extraction
     wire [8:0] s, z;
     wire [3:0] exp [8:0];
     wire [8:0] frac;
@@ -58,7 +44,7 @@ module convolution_unit (
         end
     endgenerate
 
-    // Step 2: Maximum Exponent Search Tree (Emax)
+    // Emax Tree
     wire [3:0] m01   = (exp[0] > exp[1]) ? exp[0] : exp[1];
     wire [3:0] m23   = (exp[2] > exp[3]) ? exp[2] : exp[3];
     wire [3:0] m45   = (exp[4] > exp[5]) ? exp[4] : exp[5];
@@ -68,29 +54,27 @@ module convolution_unit (
     wire [3:0] m0_7  = (m0123 > m4567) ? m0123 : m4567;
     wire [3:0] emax  = (m0_7 > exp[8]) ? m0_7 : exp[8];
 
-    // Step 3: Align 9 Mantissas to Emax (shift right by delta = emax - exp)
-    wire signed [13:0] aligned_signed_mant [8:0];
+    // 8-bit dynamic alignment (saving LUTs)
+    wire signed [11:0] aligned_signed_mant [8:0];
     generate
         for (k = 0; k < 9; k = k + 1) begin : gen_pe_align
             wire [3:0] shift = emax - exp[k];
-            wire [9:0] m_scaled = {1'b1, frac[k], 8'b00000000};
-            wire [9:0] m_aligned = (shift >= 4'd10) ? 10'd0 : (m_scaled >> shift);
-            assign aligned_signed_mant[k] = z[k] ? 14'sd0 : (s[k] ? -{4'd0, m_aligned} : {4'd0, m_aligned});
+            wire [7:0] m_scaled = {1'b1, frac[k], 6'b000000};
+            wire [7:0] m_aligned = (shift >= 4'd8) ? 8'd0 : (m_scaled >> shift);
+            assign aligned_signed_mant[k] = z[k] ? 12'sd0 : (s[k] ? -{4'd0, m_aligned} : {4'd0, m_aligned});
         end
     endgenerate
 
-    // Step 4: 9-Operand Mantissa Adder (14-bit signed accumulator)
-    wire signed [13:0] mant_sum = aligned_signed_mant[0] + aligned_signed_mant[1] +
+    wire signed [11:0] mant_sum = aligned_signed_mant[0] + aligned_signed_mant[1] +
                                   aligned_signed_mant[2] + aligned_signed_mant[3] +
                                   aligned_signed_mant[4] + aligned_signed_mant[5] +
                                   aligned_signed_mant[6] + aligned_signed_mant[7] +
                                   aligned_signed_mant[8];
 
-    // Step 5: Single Shared 14-bit Antilog Barrel Shifter
-    reg signed [13:0] shifted_raw;
+    reg signed [11:0] shifted_raw;
     always @(*) begin
         if (emax <= 4'd5) begin
-            shifted_raw = 14'sd0;
+            shifted_raw = 12'sd0;
         end else begin
             case (emax)
                 4'd6:    shifted_raw = mant_sum >>> 9;
@@ -107,7 +91,6 @@ module convolution_unit (
         end
     end
 
-    // Scale back: append 6 trailing zeros (matching V9-Nano scale)
-    assign conv_out = {{12{shifted_raw[13]}}, shifted_raw, 6'b000000};
+    assign conv_out = {{12{shifted_raw[11]}}, shifted_raw, 8'b00000000};
 
 endmodule
