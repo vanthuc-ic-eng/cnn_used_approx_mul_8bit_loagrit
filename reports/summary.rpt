@@ -1,23 +1,23 @@
 ================================================================================
- CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.2.1 (Log8-Nano Timing-Opt)
+ CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.2.2 (Log8-Nano Lean 8-bit)
 ================================================================================
- Architecture          : Log8-Nano Timing-Optimized (Single Active Pixel Encoder + Log8 Pre-encoded ROM)
- Multiplier Core       : log8_nano_mul_core #(.MODE(1)) — V9-Nano Parallel Shifter
+ Architecture          : Log8-Nano Lean 8-bit Shifter (Single Active Pixel Encoder + Log8 ROM)
+ Multiplier Core       : log8_nano_mul_core #(.MODE(2)) — 2-LSB Trimmed Ultra-Low LUT Core
  Target FPGA           : AMD Digilent Zybo Z7 (xc7z010clg400-1)
  Target Period / Freq  : 20.00 ns / 50.0 MHz
 --------------------------------------------------------------------------------
  1. PHYSICAL IMPLEMENTATION (PPA ON ZYBO Z7):
-    - Slice LUTs       : 3556 / 17,600 (20.20 %) [Saved 1,172 LUTs vs Baseline 4,728]
+    - Slice LUTs       : 3502 / 17,600 (19.90 %) [Saved 1,226 LUTs vs Baseline 4,728]
     - Slice Registers  : 3467 / 35,200 (9.85 %)
     - CARRY4 Blocks    : 221
     - Block RAM Tiles  : 3.5 tiles (0 DSP blocks)
-    - Timing Slack WNS : +6.225 ns
-    - Max Frequency    : 72.59 MHz
-    - Dynamic Power    : 0.023 W (Total On-Chip: 0.115 W)
+    - Timing Slack WNS : +5.119 ns (Timing Met at 50 MHz constraint)
+    - Max Frequency    : 67.20 MHz
+    - Dynamic Power    : 0.024 W (Total On-Chip: 0.116 W)
 --------------------------------------------------------------------------------
  2. INFERENCE ACCURACY BENCHMARK (1,000 MNIST IMAGES):
     - Evaluated Images : 1,000 / 1,000
-    - Correct Matches  : 954
-    - Inference Acc    : 95.40 % [Baseline BTC: 92.40%]
-    - Match vs Baseline: 94.20 % (942 / 1,000)
+    - Correct Matches  : 951
+    - Inference Acc    : 95.10 % [Baseline BTC: 92.40%]
+    - Match vs Baseline: 94.10 % (941 / 1,000)
 ================================================================================

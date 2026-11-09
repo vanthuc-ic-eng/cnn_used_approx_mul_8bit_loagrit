@@ -80,7 +80,7 @@ module log8_nano_mul_core #(
                     default:                raw_trunc = {mant_w, 4'b0000};
                 endcase
             end
-        end else begin : gen_shifter_mode1
+        end else if (MODE == 1) begin : gen_shifter_mode1
             // Mode 1: Hierarchical 2-stage parallel barrel shifter for higher Fmax
             wire [13:0] full_mant = {mant_w, 8'b00000000};
             wire [13:0] stage1 = exp_w[3] ? full_mant : {full_mant[13:8], 8'b0};
@@ -94,6 +94,21 @@ module log8_nano_mul_core #(
                     4'd10:                  raw_trunc = {5'd0,  mant_w[5:1]};
                     4'd11:                  raw_trunc = {4'd0,  mant_w};
                     4'd12:                  raw_trunc = {3'd0,  mant_w, 1'b0};
+                    4'd13:                  raw_trunc = {2'd0,  mant_w, 2'b00};
+                    4'd14:                  raw_trunc = {1'd0,  mant_w, 3'b000};
+                    default:                raw_trunc = {mant_w, 4'b0000};
+                endcase
+            end
+        end else begin : gen_shifter_mode2
+            // Mode 2: Lean 8-bit Antilog Barrel Shifter (v0.2.2 - LSB 2-bit trimmed for ultra-low LUTs)
+            always @(*) begin
+                case (exp_w)
+                    4'd0, 4'd1, 4'd2, 4'd3, 4'd4, 4'd5, 4'd6, 4'd7: raw_trunc = 10'd0;
+                    4'd8:                   raw_trunc = {7'd0,  mant_w[5], 2'b00};
+                    4'd9:                   raw_trunc = {6'd0,  mant_w[5:4], 2'b00};
+                    4'd10:                  raw_trunc = {5'd0,  mant_w[5:3], 2'b00};
+                    4'd11:                  raw_trunc = {4'd0,  mant_w[5:2], 2'b00};
+                    4'd12:                  raw_trunc = {3'd0,  mant_w[5:1], 2'b00};
                     4'd13:                  raw_trunc = {2'd0,  mant_w, 2'b00};
                     4'd14:                  raw_trunc = {1'd0,  mant_w, 3'b000};
                     default:                raw_trunc = {mant_w, 4'b0000};
