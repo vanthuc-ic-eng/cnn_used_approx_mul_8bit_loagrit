@@ -1,8 +1,8 @@
 ================================================================================
- CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.2.0 (Log8-Nano Stripped)
+ CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.2.1 (Log8-Nano Timing-Opt)
 ================================================================================
- Architecture          : Log8-Nano Co-Design (Single Active Pixel Encoder + Log8 Pre-encoded ROM)
- Multiplier Core       : log8_nano_mul_core #(.MODE(0)) — V9-Nano Stripped
+ Architecture          : Log8-Nano Timing-Optimized (Single Active Pixel Encoder + Log8 Pre-encoded ROM)
+ Multiplier Core       : log8_nano_mul_core #(.MODE(1)) — V9-Nano Parallel Shifter
  Target FPGA           : AMD Digilent Zybo Z7 (xc7z010clg400-1)
  Target Period / Freq  : 20.00 ns / 50.0 MHz
 --------------------------------------------------------------------------------

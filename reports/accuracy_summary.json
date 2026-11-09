@@ -1,8 +1,8 @@
 {
-  "version": "v0.2.0",
-  "tag": "v0.2.0",
-  "name": "CNN MNIST Accelerator with Log8-Nano Stripped Architecture",
-  "mode": "MODE=0 (V9-Nano Stripped Core + Active Pixel Encoder + Pre-encoded ROM)",
+  "version": "v0.2.1",
+  "tag": "v0.2.1",
+  "name": "CNN MNIST Accelerator with Log8-Nano Timing-Optimized Architecture",
+  "mode": "MODE=1 (V9-Nano Parallel Shifter + Active Pixel Encoder + Pre-encoded ROM)",
   "target_fpga": "AMD Digilent Zybo Z7 (xc7z010clg400-1)",
   "target_clock_mhz": 50.0,
   "slice_luts": 3556,
