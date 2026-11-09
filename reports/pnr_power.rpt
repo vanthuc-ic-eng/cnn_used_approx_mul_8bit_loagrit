@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-| Date             : Tue Nov 10 01:46:38 2026
+| Date             : Tue Nov 10 02:34:23 2026
 | Host             : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
 | Command          : report_power -file reports/pnr_power.rpt
 | Design           : top_cnn
@@ -53,13 +53,13 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.004 |        3 |       --- |             --- |
-| Slice Logic    |     0.004 |     7898 |       --- |             --- |
-|   LUT as Logic |     0.003 |     3556 |     17600 |           20.20 |
+| Slice Logic    |     0.004 |     8073 |       --- |             --- |
+|   LUT as Logic |     0.003 |     3811 |     17600 |           21.65 |
 |   CARRY4       |    <0.001 |      221 |      4400 |            5.02 |
-|   Register     |    <0.001 |     3467 |     35200 |            9.85 |
+|   Register     |    <0.001 |     3443 |     35200 |            9.78 |
 |   F7/F8 Muxes  |    <0.001 |       11 |     17600 |            0.06 |
-|   Others       |     0.000 |       29 |       --- |             --- |
-| Signals        |     0.011 |     6892 |       --- |             --- |
+|   Others       |     0.000 |       27 |       --- |             --- |
+| Signals        |     0.011 |     7140 |       --- |             --- |
 | Block RAM      |     0.004 |      3.5 |        60 |            5.83 |
 | I/O            |    <0.001 |       17 |       100 |           17.00 |
 | Static Power   |     0.092 |          |           |                 |
@@ -152,7 +152,7 @@ Table of Contents
 | top_cnn         |     0.023 |
 |   bram_28x28x32 |     0.001 |
 |   conv          |     0.001 |
-|   dense_layer   |     0.016 |
+|   dense_layer   |     0.015 |
 |   dense_rom     |     0.001 |
 +-----------------+-----------+
 

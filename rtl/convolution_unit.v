@@ -1,31 +1,24 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 03/24/2025 02:29:40 PM
-// Design Name: 
-// Module Name: convolution_unit
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
+// ==============================================================================
+// BLOCK FLOATING-POINT (SHARED EXPONENT) CONVOLUTION UNIT - V3 ARCHITECTURE
+// Team: Conquerors (NGUYEN VAN THUC - 24161421)
+//
+// Key Innovations:
+//   1. 9-input parallel Log8-Nano exponent & mantissa extraction.
+//   2. High-speed 4-bit Maximum Exponent tree (Emax = max(exp0..exp8)).
+//   3. Dynamic mantissa right-alignment relative to Emax (0-to-9 bit shifters).
+//   4. 9-operand narrow 14-bit signed mantissa accumulation.
+//   5. SINGLE SHARED 14-bit Antilog Barrel Shifter (eliminates 8 barrel shifters!).
+// ==============================================================================
+
 module convolution_unit (
-    input  [8*9-1:0] pixel_bus,   // 3x3 pixels liên t?c
-    input  [8*9-1:0] kernel_weights,  // 3x3 kernel liên t?c
-    output signed [31:0] conv_out
+    input  wire [8*9-1:0]      pixel_bus,      // 9 Log8-Nano pixels from BRAM
+    input  wire [8*9-1:0]      kernel_weights, // 9 Log8-Nano weights from ROM
+    output wire signed [31:0]  conv_out
 );
-    wire signed [7:0] pixel [8:0];
-    wire signed [7:0] kernel [8:0];
-    wire signed [15:0] mult_out [8:0];
+
+    wire [7:0] pixel  [8:0];
+    wire [7:0] kernel [8:0];
 
     assign pixel[0]  = pixel_bus[7:0];
     assign pixel[1]  = pixel_bus[15:8];
@@ -47,17 +40,74 @@ module convolution_unit (
     assign kernel[7] = kernel_weights[63:56];
     assign kernel[8] = kernel_weights[71:64];
 
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult0 (pixel[0], kernel[0], mult_out[0]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult1 (pixel[1], kernel[1], mult_out[1]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult2 (pixel[2], kernel[2], mult_out[2]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult3 (pixel[3], kernel[3], mult_out[3]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult4 (pixel[4], kernel[4], mult_out[4]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult5 (pixel[5], kernel[5], mult_out[5]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult6 (pixel[6], kernel[6], mult_out[6]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult7 (pixel[7], kernel[7], mult_out[7]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult8 (pixel[8], kernel[8], mult_out[8]);
+    // Step 1: 9-input Parallel Sign, Zero, Exp, and Mantissa Extraction
+    wire [8:0] s, z;
+    wire [3:0] exp [8:0];
+    wire [8:0] frac;
 
-    assign conv_out = mult_out[0] + mult_out[1] + mult_out[2] +
-                      mult_out[3] + mult_out[4] + mult_out[5] +
-                      mult_out[6] + mult_out[7] + mult_out[8];
+    genvar k;
+    generate
+        for (k = 0; k < 9; k = k + 1) begin : gen_pe_extract
+            wire [7:0] p = pixel[k];
+            wire [7:0] w = kernel[k];
+            assign s[k] = p[7] ^ w[7];
+            assign z[k] = p[6] | w[6];
+            wire [4:0] sum_log = p[3:0] + w[3:0];
+            assign exp[k]  = z[k] ? 4'd0 : sum_log[4:1];
+            assign frac[k] = sum_log[0];
+        end
+    endgenerate
+
+    // Step 2: Maximum Exponent Search Tree (Emax)
+    wire [3:0] m01   = (exp[0] > exp[1]) ? exp[0] : exp[1];
+    wire [3:0] m23   = (exp[2] > exp[3]) ? exp[2] : exp[3];
+    wire [3:0] m45   = (exp[4] > exp[5]) ? exp[4] : exp[5];
+    wire [3:0] m67   = (exp[6] > exp[7]) ? exp[6] : exp[7];
+    wire [3:0] m0123 = (m01 > m23) ? m01 : m23;
+    wire [3:0] m4567 = (m45 > m67) ? m45 : m67;
+    wire [3:0] m0_7  = (m0123 > m4567) ? m0123 : m4567;
+    wire [3:0] emax  = (m0_7 > exp[8]) ? m0_7 : exp[8];
+
+    // Step 3: Align 9 Mantissas to Emax (shift right by delta = emax - exp)
+    wire signed [13:0] aligned_signed_mant [8:0];
+    generate
+        for (k = 0; k < 9; k = k + 1) begin : gen_pe_align
+            wire [3:0] shift = emax - exp[k];
+            wire [9:0] m_scaled = {1'b1, frac[k], 8'b00000000};
+            wire [9:0] m_aligned = (shift >= 4'd10) ? 10'd0 : (m_scaled >> shift);
+            assign aligned_signed_mant[k] = z[k] ? 14'sd0 : (s[k] ? -{4'd0, m_aligned} : {4'd0, m_aligned});
+        end
+    endgenerate
+
+    // Step 4: 9-Operand Mantissa Adder (14-bit signed accumulator)
+    wire signed [13:0] mant_sum = aligned_signed_mant[0] + aligned_signed_mant[1] +
+                                  aligned_signed_mant[2] + aligned_signed_mant[3] +
+                                  aligned_signed_mant[4] + aligned_signed_mant[5] +
+                                  aligned_signed_mant[6] + aligned_signed_mant[7] +
+                                  aligned_signed_mant[8];
+
+    // Step 5: Single Shared 14-bit Antilog Barrel Shifter
+    reg signed [13:0] shifted_raw;
+    always @(*) begin
+        if (emax <= 4'd5) begin
+            shifted_raw = 14'sd0;
+        end else begin
+            case (emax)
+                4'd6:    shifted_raw = mant_sum >>> 9;
+                4'd7:    shifted_raw = mant_sum >>> 8;
+                4'd8:    shifted_raw = mant_sum >>> 7;
+                4'd9:    shifted_raw = mant_sum >>> 6;
+                4'd10:   shifted_raw = mant_sum >>> 5;
+                4'd11:   shifted_raw = mant_sum >>> 4;
+                4'd12:   shifted_raw = mant_sum >>> 3;
+                4'd13:   shifted_raw = mant_sum >>> 2;
+                4'd14:   shifted_raw = mant_sum >>> 1;
+                default: shifted_raw = mant_sum;
+            endcase
+        end
+    end
+
+    // Scale back: append 6 trailing zeros (matching V9-Nano scale)
+    assign conv_out = {{12{shifted_raw[13]}}, shifted_raw, 6'b000000};
+
 endmodule
