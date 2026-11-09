@@ -60,7 +60,7 @@ module tb_test;
     reg [255*8:0] out_csv_path;
 
     initial begin
-        out_csv_path = "sim/predict_output.csv";
+        out_csv_path = "results/predict_output.csv";
         if ($value$plusargs("OUT_CSV=%s", out_csv_path)) begin
             $display("[INFO] Output CSV will be written to: %0s", out_csv_path);
         end

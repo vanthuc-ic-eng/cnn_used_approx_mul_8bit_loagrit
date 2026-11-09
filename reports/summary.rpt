@@ -1,8 +1,8 @@
 ================================================================================
- CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.2.1 (Log8-Nano Timing-Opt)
+ CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.2.0 (Log8-Nano Stripped)
 ================================================================================
- Architecture          : Log8-Nano Timing-Optimized (Single Active Pixel Encoder + Log8 Pre-encoded ROM)
- Multiplier Core       : log8_nano_mul_core #(.MODE(1)) — V9-Nano Parallel Shifter
+ Architecture          : Log8-Nano Co-Design (Single Active Pixel Encoder + Log8 Pre-encoded ROM)
+ Multiplier Core       : log8_nano_mul_core #(.MODE(0)) — V9-Nano Stripped
  Target FPGA           : AMD Digilent Zybo Z7 (xc7z010clg400-1)
  Target Period / Freq  : 20.00 ns / 50.0 MHz
 --------------------------------------------------------------------------------
@@ -15,9 +15,9 @@
     - Max Frequency    : 72.59 MHz
     - Dynamic Power    : 0.023 W (Total On-Chip: 0.115 W)
 --------------------------------------------------------------------------------
- 2. CO-DESIGN ARTIFACTS:
-    - Active Pixel Enc : 1 single active encoder at img_padded_bram input (rtl/active_log8_nano_encoder.v)
-    - Pre-encoded ROMs : 36 Conv2D kernel weights + 3,240 Dense weights pre-encoded offline
-    - Conv2D Multipliers: 9 instances of log8_nano_mul_core with 0 encoders (IS_LOG8_A=1, IS_LOG8_B=1)
-    - Expected Acc     : 95.40 % (954 / 1000 images, mathematically identical to V9-Nano)
+ 2. INFERENCE ACCURACY BENCHMARK (1,000 MNIST IMAGES):
+    - Evaluated Images : 1,000 / 1,000
+    - Correct Matches  : 954
+    - Inference Acc    : 95.40 % [Baseline BTC: 92.40%]
+    - Match vs Baseline: 94.20 % (942 / 1,000)
 ================================================================================
