@@ -44,4 +44,4 @@ fpga:
 	@grep -A 8 "Design Timing Summary" reports/pnr_timing.rpt || true
 
 clean:
-	@rm -rf xsim.dir .Xil reports/vivado_pnr.log results/predict_output.csv *.jou *.log *.pb clockInfo.txt
+	@rm -rf xsim.dir .Xil reports results *.jou *.log *.pb clockInfo.txt
