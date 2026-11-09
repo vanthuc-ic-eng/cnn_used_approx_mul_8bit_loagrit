@@ -1,23 +1,23 @@
 ================================================================================
- CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.0.0 (Baseline BTC)
+ CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.1.0 (V9-Ultra Balanced)
 ================================================================================
- Architecture          : BTC Untouched Exact Multiplier
- Multiplier Core       : TheMultiplier.v (Trần Đình Văn, HCMUTE)
+ Architecture          : LUT-ALM V9-Ultra Balanced Multiplier
+ Multiplier Core       : lutalm_mul_s8 #(.MODE(0))
  Target FPGA           : AMD Digilent Zybo Z7 (xc7z010clg400-1)
  Target Period / Freq  : 20.00 ns / 50.0 MHz
 --------------------------------------------------------------------------------
  1. PHYSICAL IMPLEMENTATION (PPA ON ZYBO Z7):
-    - Slice LUTs       : 4728 / 17,600 (26.86 %)
-    - Slice Registers  : 3595 / 35,200 (10.21 %)
+    - Slice LUTs       : 3982 / 17,600 (22.62 %) [Saved 746 LUTs vs Baseline 4,728]
+    - Slice Registers  : 3543 / 35,200 (10.07 %)
     - CARRY4 Blocks    : 264
     - Block RAM Tiles  : 3.5 tiles (0 DSP blocks)
-    - Timing Slack WNS : +1.019 ns
-    - Max Frequency    : 52.68 MHz
-    - Dynamic Power    : 0.030 W (Total On-Chip: 0.122 W)
+    - Timing Slack WNS : +3.634 ns
+    - Max Frequency    : 61.12 MHz
+    - Dynamic Power    : 0.025 W (Total On-Chip: 0.117 W)
 --------------------------------------------------------------------------------
  2. INFERENCE ACCURACY BENCHMARK (1,000 MNIST IMAGES):
     - Evaluated Images : 1,000 / 1,000
-    - Correct Matches  : 924
-    - Inference Acc    : 92.40 % [Baseline Standard]
-    - Match vs Baseline: 100.00 % (1,000 / 1,000)
+    - Correct Matches  : 928
+    - Inference Acc    : 92.80 % [Baseline BTC: 92.40%]
+    - Match vs Baseline: 98.60 % (986 / 1,000)
 ================================================================================
