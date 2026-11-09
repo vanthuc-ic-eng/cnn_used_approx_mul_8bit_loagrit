@@ -167,7 +167,14 @@ module top_cnn(
             // IMAGE 30x30x8
     assign we_bram_image_30x30x8 = we_write_pre_processing; //DONE
     assign addr_bram_image_30x30x8 = (convolution == 1'b1)? addr_read_convolution_kernel : addr_write_pre_processing; //DONE
-    assign din_bram_image_30x30x8 = dout_write_pre_processing; // DONE
+    
+    // Active Log8-Nano Pixel Encoder: converts INT8 pixels to Log8-Nano before storing in BRAM
+    wire [7:0] dout_write_pre_processing_log8;
+    active_log8_nano_encoder u_active_pixel_encoder (
+        .data_i(dout_write_pre_processing),
+        .log8_o(dout_write_pre_processing_log8)
+    );
+    assign din_bram_image_30x30x8 = dout_write_pre_processing_log8; // Pre-encoded Log8-Nano
     assign din_read_convolution_kernel = dout_bram_image_30x30x8; //DONE
     
     // BRAM_OUTPUT_28x28x32

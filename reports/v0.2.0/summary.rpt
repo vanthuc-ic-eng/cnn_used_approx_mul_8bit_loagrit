@@ -1,0 +1,23 @@
+================================================================================
+ CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.2.0 (Log8-Nano Stripped)
+================================================================================
+ Architecture          : Log8-Nano Co-Design (Single Active Pixel Encoder + Log8 Pre-encoded ROM)
+ Multiplier Core       : log8_nano_mul_core #(.MODE(0)) — V9-Nano Stripped
+ Target FPGA           : AMD Digilent Zybo Z7 (xc7z010clg400-1)
+ Target Period / Freq  : 20.00 ns / 50.0 MHz
+--------------------------------------------------------------------------------
+ 1. PHYSICAL IMPLEMENTATION (PPA ON ZYBO Z7):
+    - Slice LUTs       : 3556 / 17,600 (20.20 %) [Saved 1,172 LUTs vs Baseline 4,728]
+    - Slice Registers  : 3467 / 35,200 (9.85 %)
+    - CARRY4 Blocks    : 221
+    - Block RAM Tiles  : 3.5 tiles (0 DSP blocks)
+    - Timing Slack WNS : +6.225 ns
+    - Max Frequency    : 72.59 MHz
+    - Dynamic Power    : 0.023 W (Total On-Chip: 0.115 W)
+--------------------------------------------------------------------------------
+ 2. CO-DESIGN ARTIFACTS:
+    - Active Pixel Enc : 1 single active encoder at img_padded_bram input (rtl/active_log8_nano_encoder.v)
+    - Pre-encoded ROMs : 36 Conv2D kernel weights + 3,240 Dense weights pre-encoded offline
+    - Conv2D Multipliers: 9 instances of log8_nano_mul_core with 0 encoders (IS_LOG8_A=1, IS_LOG8_B=1)
+    - Expected Acc     : 95.40 % (954 / 1000 images, mathematically identical to V9-Nano)
+================================================================================
