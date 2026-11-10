@@ -34,9 +34,7 @@ module bram_output_28x28x8 (
             if (we)
                 mem[addr] <= din;
             dout <= mem[addr];
-            // Chỉ hiển thị khi đọc mà không ghi (để dễ nhìn)
-//            if (!we)
-//                $display("Read BRAM 28x28x8[addr=%0d] => data=%0d", addr, mem[addr]);
+            // Debug monitor for read-only cycles (commented out for synthesis)
         end
 
 endmodule

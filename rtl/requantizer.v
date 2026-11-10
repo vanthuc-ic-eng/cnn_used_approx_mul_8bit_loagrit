@@ -150,21 +150,21 @@ module requantizer (
                     state <= WAIT_READ;
                 end
                 
-                WAIT_READ: begin //Doi 1 chu ky de cap nhat addr.
+                WAIT_READ: begin // 1-cycle latency wait for address registration
                     state <= COMPUTE;
                 end
                 
                COMPUTE: begin
-                    current_val <= din;   // Gán current_val
-                    state <= WAIT_COMPUTE; // Đợi 1 chu kỳ để result_int8 sẵn sàng
+                    current_val <= din;   // Latch current 32-bit pixel value
+                    state <= WAIT_COMPUTE; // Allow 1 cycle for combinational requantizer_unit computation
                 end
                 
-                WAIT_COMPUTE: begin //Doi 1 chu ky xung de cho requantizer_unit tinh toan truoc khi doc gia tri dau ra cua no.
+                WAIT_COMPUTE: begin // Synchronous delay stage prior to sampling requantized result
                     state <= WRITE;
                 end
                 
                 WRITE: begin
-                    dout <= result_int8;    // Giờ mới lấy giá trị đúng của result_int8
+                    dout <= result_int8;    // Register valid 8-bit requantized value
                     we <= 1;
                     addr <= index;
                     state <= NEXT;

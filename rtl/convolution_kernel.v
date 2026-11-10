@@ -132,13 +132,12 @@ module convolution_kernel (
                             7: addr_read <= (row + 2) * 30 + col + 1;
                             8: addr_read <= (row + 2) * 30 + col + 2;
                         endcase
-                        state <= WAIT_READ_PIXEL; // mới thêm
+                        state <= WAIT_READ_PIXEL;
                     end
                 
-                /*LUU Y: BAT CU GIAO TIEP NAO VOI BRAM, O LOAD PIXEL LA THAY DOI DIA CHI
-                DE READ, THI CAN 1 CHU KY XUNG DE CAP NHAT DIA CHI. addr_read DONG` THOI`, BRAM CAN` 
-                1 CHU KY XUNG DE CAP NHAT DU LIEU VAO dout THI KHI DO din_read MOI CO GIA TRI.
-                CHO NEN PHAI CO 1 STATE DOI BRAM DUA DU LIEU RA, O DAY LA WAIT_READ_PIXEL! */
+                // Synchronous BRAM Read Protocol:
+                // Address registration incurs a 1-cycle latency, followed by a 1-cycle data access delay.
+                // The WAIT_READ_PIXEL state provides the required synchronous timing window.
                     WAIT_READ_PIXEL: begin
                         state <= WAIT_PIXEL;
                     end
@@ -160,19 +159,13 @@ module convolution_kernel (
                     COMPUTE: begin
                         reg_conv_out <= conv_out;
                         state <= WRITE;
-                        //========= DUNG CHO DEBUG ============
-    //                    $display("==== DEBUG ====");
-    //                    $display("Time: %0t", $time);
-    //                    $display("kernel_id = %0d", kernel_id);
-    //                    $display("pixel_bus = %h", pixel_bus);
-    //                    $display("kernel_weights = %h", kernel_weights);
-    //                    $display("conv_out = %0d", conv_out);
+                        //========= DEBUG INSTRUMENTATION ============
                     end
                 
     
                 WRITE: begin
                     addr_write <= row * 28 + col;
-                    dout_write <= reg_conv_out;  // dùng kết quả đã chốt
+                    dout_write <= reg_conv_out;  // Register-buffered convolution output
                     we_write <= 1;
                     state <= NEXT;
     

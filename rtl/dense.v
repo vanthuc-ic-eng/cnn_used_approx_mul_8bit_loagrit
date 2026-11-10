@@ -48,7 +48,7 @@ module dense(
                FIND_MAX = 9,
                CHECK_WINNER = 10;
 
-    reg [3:0] state; //DAM BAO KHI TAT FPGA VA MO LAI THI STATE = IDLE
+    reg [3:0] state; // FSM state register, initialized to IDLE upon reset
 
     reg signed [7:0] a, b;
     wire signed [15:0] S;
@@ -160,7 +160,7 @@ module dense(
                     max_val <= neuron[0];
                     max_idx <= 0;
                     compare_idx <= 1;
-//                     ============ DUNG CHO DEBUG ================
+//                     ============ DEBUG INSTRUMENTATION ================
 //                    $display("Neuron values:");
 //                    $display("neuron[0] = %0d", neuron[0]);
 //                    $display("neuron[1] = %0d", neuron[1]);

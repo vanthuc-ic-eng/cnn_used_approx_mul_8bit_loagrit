@@ -22,8 +22,8 @@
 
 module conv2d_kernel_rom (
     input clk,
-    input  wire [5:0] addr,         // Địa chỉ từ 0 đến 35
-    output reg  signed [7:0] data   // Giá trị trọng số tương ứng
+    input  wire [5:0] addr,         // Kernel weight address (0 to 35)
+    output reg  signed [7:0] data   // Corresponding 8-bit signed kernel weight
 );
 
     always @(posedge clk) begin

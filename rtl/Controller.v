@@ -23,11 +23,11 @@
 module controller (
     input wire clk,
     input wire reset,
-    input wire start,               // Tín hiệu bắt đầu từ pre_processing gui toi'.
-    input wire done_maxpool,        // Tín hiệu tu maxpool gui den bao' da~ xong 1 kernel.
-    output reg [1:0] kernel_id,     // Thứ tự kernel 0 -> 3
-    output reg start_kernel,        // Tin hieu Start gui den cho module Conv2d.
-    output reg done_all             // Tin hieu Start gui den module Dense báo đã xong 4 kernel để đi vào Dense.
+    input wire start,               // Global start trigger from pre_processing
+    input wire done_maxpool,        // Kernel completion strobe from max_pooling_3x3
+    output reg [1:0] kernel_id,     // Active kernel channel index (0 to 3)
+    output reg start_kernel,        // Start strobe asserted for convolution_kernel
+    output reg done_all             // Global completion strobe asserted for dense layer
 );
 
     localparam IDLE = 0,

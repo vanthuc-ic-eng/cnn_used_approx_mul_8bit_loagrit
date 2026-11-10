@@ -22,8 +22,8 @@
 
 module dense_weights_rom (
     input clk,
-    input  wire [11:0] addr,         // Địa chỉ từ 0 đến 3239
-    output reg  signed [7:0] data   // Giá trị trọng số tương ứng
+    input  wire [11:0] addr,        // Dense weight address (0 to 3239)
+    output reg  signed [7:0] data   // Corresponding 8-bit signed dense weight
 );
 
     always @(posedge clk) begin
