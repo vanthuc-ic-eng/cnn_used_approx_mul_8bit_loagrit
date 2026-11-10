@@ -26,17 +26,17 @@ module relu_bram (
     input wire start,
     output reg done, //DONE
 
-    // interface to BRAM output 28x28x32
-    output reg [9:0] addr, //DONE
-    input wire signed [31:0] din,    // đầu vào từ BRAM
-    output reg signed [31:0] dout, //DONE          // đầu ra ghi vào BRAM
-    output reg we //DONE                   // tín hiệu ghi
+    // Interface to BRAM output 28x28x32
+    output reg [9:0] addr,
+    input wire signed [31:0] din,    // Data input from BRAM
+    output reg signed [31:0] dout,   // Data output written to BRAM
+    output reg we                    // Write enable strobe
 );
 
     localparam IDLE = 0, WAIT_STABLE = 1, LOAD = 2, WAIT_LOAD = 3, CHECK_SIGNED_BIT = 4, WRITE = 5, NEXT = 6, FINISH = 7;
-    reg [2:0] state; //DONE
+    reg [2:0] state;
 
-    reg [9:0] index; //DONE    // địa chỉ từ 0 đến 783
+    reg [9:0] index;                 // Pixel address index (0 to 783)
         
     always @(posedge clk or posedge reset) begin
         if (reset) begin
@@ -66,7 +66,7 @@ module relu_bram (
                     state <= WAIT_LOAD;
                 end
     
-                WAIT_LOAD: begin //Doi 1 chu ky de dout cua bram cap nhat vao din cua relu_bram.
+                WAIT_LOAD: begin // 1-cycle latency wait for BRAM read port stability
                     state <= CHECK_SIGNED_BIT;
                 end
     
@@ -74,17 +74,15 @@ module relu_bram (
                     if (din[31] == 1) begin
                         dout <= 0;
                         we <= 1;
-    //                    $display("ReLU at addr=%0d: input=%0d -> output=0", index, $signed(din));
                         state <= WRITE;
                     end else begin
-                        // Không cần ghi nếu không âm
-    //                    $display("ReLU at addr=%0d: input=%0d -> GIU NGUYEN", index, $signed(din));
+                        // Non-negative values remain unaltered; bypass write operation
                         state <= NEXT;
                     end
                 end
     
                 WRITE: begin
-                    we <= 0;  // ghi xong rồi tắt write enable
+                    we <= 0;  // De-assert write enable upon write completion
                     state <= NEXT;
                 end
     

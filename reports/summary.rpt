@@ -2,7 +2,7 @@
  CNN MNIST HARDWARE ACCELERATOR SIGN-OFF REPORT — v0.0.0 (Baseline BTC)
 ================================================================================
  Architecture          : BTC Untouched Exact Multiplier
- Multiplier Core       : TheMultiplier.v (Trần Đình Văn, HCMUTE)
+ Multiplier Core       : TheMultiplier.v (Tran Dinh Van, HCMUTE)
  Target FPGA           : AMD Digilent Zybo Z7 (xc7z010clg400-1)
  Target Period / Freq  : 20.00 ns / 50.0 MHz
 --------------------------------------------------------------------------------

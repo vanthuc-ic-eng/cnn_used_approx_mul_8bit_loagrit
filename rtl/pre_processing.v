@@ -23,17 +23,17 @@
 module pre_processing (
     input wire clk,
     input wire reset,
-    input wire start, // Tín hiệu Start từ module Top gửi đến.
-    input wire signed [7:0] pixel, // Dữ liệu pixel được locked từ bên ngoài
-    input wire write,              // Tín hiệu ghi pixel mới
-    output reg done_write, //DONE       // Báo đã ghi xong 1 pixel
-    output reg done_padding, //DONE
-    output reg got_full_image, //DONE    // Báo đã ghi đủ 784 pixel
-    output reg done, //DONE
+    input wire start,                  // Initiation start trigger from top module
+    input wire signed [7:0] pixel,     // Input pixel sample locked from external stream
+    input wire write,                  // Pixel write strobe
+    output reg done_write,             // Acknowledges completion of single pixel write
+    output reg done_padding,           // Acknowledges zero-padding completion (30x30 frame)
+    output reg got_full_image,         // Acknowledges reception of all 784 pixels
+    output reg done,
 
-    output reg we, //DONE
-    output reg [9:0] addr, //DONE
-    output reg signed [7:0] dout //DONE
+    output reg we,
+    output reg [9:0] addr,
+    output reg signed [7:0] dout
 );
 
     localparam IDLE = 0,
@@ -45,7 +45,7 @@ module pre_processing (
                CHECK_FULL_IMAGE = 6,
                FINISH = 7;
 
-    reg [2:0] state; //DONE //DAM BAO KHI TAT FPGA VA MO LAI THI STATE VE IDLE
+    reg [2:0] state; // FSM state register, initialized to IDLE upon reset
     reg [9:0] i; //DONE
     reg [9:0] pad_index; //DONE
 

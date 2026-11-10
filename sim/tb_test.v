@@ -47,7 +47,7 @@ module tb_test;
     integer i, img_index;
     integer file;
 
-    // Tạo tên file từ index
+    // Generate filename from image index
     task load_image(input integer idx);
         reg [255*8:0] filename;
         begin
@@ -71,20 +71,20 @@ module tb_test;
         end
 
         #10 @(posedge clk);
-        $display("[INFO] Da gui tin hieu reset de bat dau padding tai thoi diem %0t", $time);
+        $display("[INFO] Reset asserted to initialize input image padding at time %0t", $time);
         reset = 1;
         @(posedge clk);
         reset = 0;
         
-        // Mở file CSV để ghi kết quả
+        // Open CSV output stream for inference recording
         file = $fopen(out_csv_path, "w");
         if (!file) begin
-            $display("[ERROR] Khong mo duoc file: %0s!", out_csv_path);
+            $display("[ERROR] Unable to open output CSV file: %0s!", out_csv_path);
             $finish;
         end
         $fwrite(file, "ImageIndex,Predict\n"); // Header
 
-        // Lặp qua max_images ảnh từ image_0000
+        // Iterate across testbench images starting from index 0
         for (img_index = 0; img_index < max_images; img_index = img_index + 1) begin
             if (img_index % 100 == 0 || img_index == max_images - 1) begin
                 $display("[PROGRESS] Simulating image %0d / %0d...", img_index, max_images);
@@ -93,10 +93,10 @@ module tb_test;
             load_image(img_index);
             
 
-            // Đợi hệ thống sẵn sàng
+            // Wait until hardware accelerator indicates ready state
             wait (ready == 1);
 
-            // Gửi từng pixel
+            // Stream image pixels sequentially
             while (i < 784) begin
                 @(posedge clk);
                 if (ready) begin
@@ -109,7 +109,7 @@ module tb_test;
                 end
             end
 
-            // Đợi tính toán
+            // Await completion of neural inference calculation
             wait (calculating == 1);
             wait (calculating == 0);
 

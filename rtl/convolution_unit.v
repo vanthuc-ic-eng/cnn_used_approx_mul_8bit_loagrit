@@ -19,8 +19,8 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 module convolution_unit (
-    input  [8*9-1:0] pixel_bus,   // 3x3 pixels liên t?c
-    input  [8*9-1:0] kernel_weights,  // 3x3 kernel liên t?c
+    input  [8*9-1:0] pixel_bus,       // Flattened 3x3 pixel window (9 bytes)
+    input  [8*9-1:0] kernel_weights,   // Flattened 3x3 kernel weights (9 bytes)
     output signed [31:0] conv_out
 );
     wire signed [7:0] pixel [8:0];
