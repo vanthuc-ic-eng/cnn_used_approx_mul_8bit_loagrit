@@ -52,6 +52,12 @@ def gen_excel(pred_csv="results/predict_output.csv", gt_csv="data/ground_truth_l
 
     wb.save(out_xlsx)
     print(f"[OK] Generated {out_xlsx} ({num_rows} images)")
+    
+    # Also write standardized academic English filename for IEEE reporting
+    eng_xlsx = "reports/Accuracy_Evaluation.xlsx"
+    if out_xlsx != eng_xlsx:
+        wb.save(eng_xlsx)
+        print(f"[OK] Generated {eng_xlsx} ({num_rows} images)")
 
 if __name__ == "__main__":
     p = sys.argv[1] if len(sys.argv) > 1 else "results/predict_output.csv"
