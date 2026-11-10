@@ -51,10 +51,14 @@ module log8_nano_mul_core #(
     wire sign_prod = code_a[7] ^ code_b[7];
     wire z_prod    = code_a[6] | code_b[6];
 
-    // Log addition (4-bit + 4-bit = 5-bit)
-    wire [3:0] log_a   = code_a[3:0];
-    wire [3:0] log_b   = code_b[3:0];
-    wire [4:0] log_sum = log_a + log_b;
+    // Log addition with Active Input Operand Isolation:
+    // When either operand is zero (z_prod == 1), gate log inputs to 0 to eliminate
+    // spurious switching activity and dynamic power dissipation inside adder and shifter.
+    wire [3:0] log_a     = code_a[3:0];
+    wire [3:0] log_b     = code_b[3:0];
+    wire [3:0] log_a_iso = z_prod ? 4'b0000 : log_a;
+    wire [3:0] log_b_iso = z_prod ? 4'b0000 : log_b;
+    wire [4:0] log_sum   = log_a_iso + log_b_iso;
 
     wire [3:0] exp_w   = log_sum[4:1];
     wire       frac_w  = log_sum[0];
@@ -100,7 +104,7 @@ module log8_nano_mul_core #(
                 endcase
             end
         end else begin : gen_shifter_mode2
-            // Mode 2: Lean 8-bit Antilog Barrel Shifter (v0.2.2 - LSB 2-bit trimmed for ultra-low LUTs)
+            // Mode 2: Lean 8-bit Antilog Barrel Shifter (LSB 2-bit trimmed)
             always @(*) begin
                 case (exp_w)
                     4'd0, 4'd1, 4'd2, 4'd3, 4'd4, 4'd5, 4'd6, 4'd7: raw_trunc = 10'd0;
