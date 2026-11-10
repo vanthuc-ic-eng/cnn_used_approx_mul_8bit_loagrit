@@ -1,0 +1,29 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Wed Nov 11 01:53:56 2026
+| Host         : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
+| Command      : report_design_analysis -logic_level_distribution -file reports/logic_level_distribution.rpt
+| Design       : top_cnn
+| Device       : xc7z010
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Design Analysis
+
+Table of Contents
+-----------------
+1. Logic Level Distribution
+
+1. Logic Level Distribution
+---------------------------
+
++-----------------+-------------+---+-----+----+----+----+-----+----+----+----+----+----+----+----+----+----+----+-----+----+----+
+| End Point Clock | Requirement | 1 |  13 | 14 | 15 | 16 |  17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 |  28 | 29 | 30 |
++-----------------+-------------+---+-----+----+----+----+-----+----+----+----+----+----+----+----+----+----+----+-----+----+----+
+| sys_clk_pin     | 20.000ns    | 5 | 111 |  1 | 16 | 14 | 187 | 14 |  7 | 27 | 32 | 28 | 31 | 38 | 40 | 39 | 40 | 291 | 39 | 40 |
++-----------------+-------------+---+-----+----+----+----+-----+----+----+----+----+----+----+----+----+----+----+-----+----+----+
+* Columns represent the logic levels per end point clock
+** Distribution is for top worst 1000 paths
+
+

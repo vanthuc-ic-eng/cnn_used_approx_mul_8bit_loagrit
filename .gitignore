@@ -2,9 +2,10 @@
 .Xil/
 xsim.dir/
 *.jou
-*.log
+/*.log
 *.pb
 *.backup.*
-reports/vivado_pnr.log
+clockInfo.txt
+results/
 sim/predict_output.csv
 data/MNIST_Images

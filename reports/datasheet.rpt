@@ -1,0 +1,97 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Wed Nov 11 01:53:56 2026
+| Host         : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
+| Command      : report_datasheet -file reports/datasheet.rpt
+| Design       : top_cnn
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Data Sheet Report
+
+Input Ports Setup/Hold
+
+------------+------------+---------+-------+---------------+---------+---------------+---------+----------+
+Reference   | Input      | IO Reg  | Delay |     Setup(ns) | Process |      Hold(ns) | Process | Internal |
+Clock       | Port       | Type    | Type  | to Clk (Edge) | Corner  | to Clk (Edge) | Corner  | Clock    |
+------------+------------+---------+-------+---------------+---------+---------------+---------+----------+
+sys_clk_pin | lock_pixel | FDCE    | -     |     0.603 (r) | FAST    |     3.310 (r) | SLOW    |          |
+sys_clk_pin | pixel[0]   | FDCE    | -     |    -0.544 (r) | FAST    |     3.743 (r) | SLOW    |          |
+sys_clk_pin | pixel[1]   | FDCE    | -     |    -0.474 (r) | FAST    |     3.617 (r) | SLOW    |          |
+sys_clk_pin | pixel[2]   | FDCE    | -     |    -0.498 (r) | FAST    |     3.616 (r) | SLOW    |          |
+sys_clk_pin | pixel[3]   | FDCE    | -     |    -0.516 (r) | FAST    |     3.678 (r) | SLOW    |          |
+sys_clk_pin | pixel[4]   | FDCE    | -     |    -0.677 (r) | FAST    |     3.985 (r) | SLOW    |          |
+sys_clk_pin | pixel[5]   | FDCE    | -     |    -0.556 (r) | FAST    |     3.746 (r) | SLOW    |          |
+sys_clk_pin | pixel[6]   | FDCE    | -     |    -0.417 (r) | FAST    |     3.676 (r) | SLOW    |          |
+sys_clk_pin | pixel[7]   | FDCE    | -     |    -0.551 (r) | FAST    |     3.799 (r) | SLOW    |          |
+sys_clk_pin | reset      | FDCE    | -     |    14.949 (r) | SLOW    |     3.630 (r) | SLOW    |          |
+------------+------------+---------+-------+---------------+---------+---------------+---------+----------+
+
+
+Output Ports Clock-to-out
+
+------------+-------------+--------+-------+----------------+---------+----------------+---------+----------+
+Reference   | Output      | IO Reg | Delay | Max Clk (Edge) | Process | Min Clk (Edge) | Process | Internal |
+Clock       | Port        | Type   | Type  |    to port(ns) | Corner  |    to port(ns) | Corner  | Clock    |
+------------+-------------+--------+-------+----------------+---------+----------------+---------+----------+
+sys_clk_pin | calculating | FDCE   | -     |     10.524 (r) | SLOW    |      3.282 (r) | FAST    |          |
+sys_clk_pin | predict[0]  | FDCE   | -     |     11.872 (r) | SLOW    |      3.914 (r) | FAST    |          |
+sys_clk_pin | predict[1]  | FDCE   | -     |     11.696 (r) | SLOW    |      3.843 (r) | FAST    |          |
+sys_clk_pin | predict[2]  | FDCE   | -     |     11.836 (r) | SLOW    |      3.897 (r) | FAST    |          |
+sys_clk_pin | predict[3]  | FDCE   | -     |     11.733 (r) | SLOW    |      3.880 (r) | FAST    |          |
+sys_clk_pin | ready       | FDCE   | -     |     10.431 (r) | SLOW    |      3.218 (r) | FAST    |          |
+------------+-------------+--------+-------+----------------+---------+----------------+---------+----------+
+
+
+Setup between Clocks
+
+------------+-------------+---------------+---------+---------------+---------+---------------+---------+---------------+---------+
+Source      | Destination |  Src:Rise     | Process |  Src:Rise     | Process |  Src:Fall     | Process |  Src:Fall     | Process |
+Clock       | Clock       | Dest:Rise(ns) | Corner  | Dest:Fall(ns) | Corner  | Dest:Rise(ns) | Corner  | Dest:Fall(ns) | Corner  |
+------------+-------------+---------------+---------+---------------+---------+---------------+---------+---------------+---------+
+sys_clk_pin | sys_clk_pin |        14.423 | SLOW    |               |         |               |         |               |         |
+------------+-------------+---------------+---------+---------------+---------+---------------+---------+---------------+---------+
+
+
+Setup / Hold times for input bus
+Clocked by: sys_clk_pin
+Worst Case Data Window: 3.568 ns
+Ideal Clock Offset to Actual Clock: 2.201 ns
+-------------------+------------+---------+-------------+---------+-----------+-----------+---------------+
+                   |            | Process |             | Process | Setup     |  Hold     | Source Offset |
+Source             |  Setup(ns) | Corner  |    Hold(ns) | Corner  | Slack(ns) | Slack(ns) | to Center(ns) |
+-------------------+------------+---------+-------------+---------+-----------+-----------+---------------+
+pixel[0]           | -0.544 (r) | FAST    |   3.743 (r) | SLOW    |       inf |       inf |             - |
+pixel[1]           | -0.474 (r) | FAST    |   3.617 (r) | SLOW    |       inf |       inf |             - |
+pixel[2]           | -0.498 (r) | FAST    |   3.616 (r) | SLOW    |       inf |       inf |             - |
+pixel[3]           | -0.516 (r) | FAST    |   3.678 (r) | SLOW    |       inf |       inf |             - |
+pixel[4]           | -0.677 (r) | FAST    |   3.985 (r) | SLOW    |       inf |       inf |             - |
+pixel[5]           | -0.556 (r) | FAST    |   3.746 (r) | SLOW    |       inf |       inf |             - |
+pixel[6]           | -0.417 (r) | FAST    |   3.676 (r) | SLOW    |       inf |       inf |             - |
+pixel[7]           | -0.551 (r) | FAST    |   3.799 (r) | SLOW    |       inf |       inf |             - |
+-------------------+------------+---------+-------------+---------+-----------+-----------+---------------+
+Worst Case Summary | -0.417 (r) | FAST    |   3.985 (r) | SLOW    |       inf |       inf |             - |
+-------------------+------------+---------+-------------+---------+-----------+-----------+---------------+
+
+
+
+Max / Min delays for output bus
+Clocked by: sys_clk_pin
+Bus Skew: 0.175 ns
+-------------------+--------------+---------+-------------+---------+----------+
+                   |      Max     | Process |     Min     | Process | Edge     |
+Pad                |    Delay(ns) | Corner  |   Delay(ns) | Corner  | Skew(ns) |
+-------------------+--------------+---------+-------------+---------+----------+
+predict[0]         |   11.872 (r) | SLOW    |   3.914 (r) | FAST    |    0.175 |
+predict[1]         |   11.696 (r) | SLOW    |   3.843 (r) | FAST    |    0.000 |
+predict[2]         |   11.836 (r) | SLOW    |   3.897 (r) | FAST    |    0.139 |
+predict[3]         |   11.733 (r) | SLOW    |   3.880 (r) | FAST    |    0.037 |
+-------------------+--------------+---------+-------------+---------+----------+
+Worst Case Summary |   11.872 (r) | SLOW    |   3.843 (r) | FAST    |    0.175 |
+-------------------+--------------+---------+-------------+---------+----------+
+
+
+

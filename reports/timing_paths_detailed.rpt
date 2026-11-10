@@ -1,0 +1,1367 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Wed Nov 11 01:53:45 2026
+| Host         : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
+| Command      : report_timing -delay_type max -max_paths 10 -file reports/timing_paths_detailed.rpt
+| Design       : top_cnn
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.12 2019-11-22
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Timing Report
+
+Slack (MET) :             5.577ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[10]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        14.044ns  (logic 3.975ns (28.303%)  route 10.069ns (71.696%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.139ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.891ns = ( 24.891 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.997    19.365    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X21Y11         FDCE                                         r  dense_layer/max_val_reg[10]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.499    24.891    dense_layer/clk_IBUF_BUFG
+    SLICE_X21Y11         FDCE                                         r  dense_layer/max_val_reg[10]/C
+                         clock pessimism              0.291    25.182    
+                         clock uncertainty           -0.035    25.146    
+    SLICE_X21Y11         FDCE (Setup_fdce_C_CE)      -0.205    24.941    dense_layer/max_val_reg[10]
+  -------------------------------------------------------------------
+                         required time                         24.941    
+                         arrival time                         -19.365    
+  -------------------------------------------------------------------
+                         slack                                  5.577    
+
+Slack (MET) :             5.763ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[27]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.864ns  (logic 3.975ns (28.671%)  route 9.889ns (71.329%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.133ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.897ns = ( 24.897 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.816    19.184    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X11Y14         FDCE                                         r  dense_layer/max_val_reg[27]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.505    24.897    dense_layer/clk_IBUF_BUFG
+    SLICE_X11Y14         FDCE                                         r  dense_layer/max_val_reg[27]/C
+                         clock pessimism              0.291    25.188    
+                         clock uncertainty           -0.035    25.152    
+    SLICE_X11Y14         FDCE (Setup_fdce_C_CE)      -0.205    24.947    dense_layer/max_val_reg[27]
+  -------------------------------------------------------------------
+                         required time                         24.947    
+                         arrival time                         -19.184    
+  -------------------------------------------------------------------
+                         slack                                  5.763    
+
+Slack (MET) :             5.789ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[25]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.872ns  (logic 3.975ns (28.655%)  route 9.897ns (71.345%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.135ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.895ns = ( 24.895 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.824    19.192    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X10Y16         FDCE                                         r  dense_layer/max_val_reg[25]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.503    24.895    dense_layer/clk_IBUF_BUFG
+    SLICE_X10Y16         FDCE                                         r  dense_layer/max_val_reg[25]/C
+                         clock pessimism              0.291    25.186    
+                         clock uncertainty           -0.035    25.150    
+    SLICE_X10Y16         FDCE (Setup_fdce_C_CE)      -0.169    24.981    dense_layer/max_val_reg[25]
+  -------------------------------------------------------------------
+                         required time                         24.981    
+                         arrival time                         -19.192    
+  -------------------------------------------------------------------
+                         slack                                  5.789    
+
+Slack (MET) :             5.789ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[28]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.872ns  (logic 3.975ns (28.655%)  route 9.897ns (71.345%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.135ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.895ns = ( 24.895 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.824    19.192    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X10Y16         FDCE                                         r  dense_layer/max_val_reg[28]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.503    24.895    dense_layer/clk_IBUF_BUFG
+    SLICE_X10Y16         FDCE                                         r  dense_layer/max_val_reg[28]/C
+                         clock pessimism              0.291    25.186    
+                         clock uncertainty           -0.035    25.150    
+    SLICE_X10Y16         FDCE (Setup_fdce_C_CE)      -0.169    24.981    dense_layer/max_val_reg[28]
+  -------------------------------------------------------------------
+                         required time                         24.981    
+                         arrival time                         -19.192    
+  -------------------------------------------------------------------
+                         slack                                  5.789    
+
+Slack (MET) :             5.798ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[34]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.856ns  (logic 3.975ns (28.689%)  route 9.881ns (71.311%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.142ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.888ns = ( 24.888 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.808    19.176    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X20Y15         FDCE                                         r  dense_layer/max_val_reg[34]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.496    24.888    dense_layer/clk_IBUF_BUFG
+    SLICE_X20Y15         FDCE                                         r  dense_layer/max_val_reg[34]/C
+                         clock pessimism              0.291    25.179    
+                         clock uncertainty           -0.035    25.143    
+    SLICE_X20Y15         FDCE (Setup_fdce_C_CE)      -0.169    24.974    dense_layer/max_val_reg[34]
+  -------------------------------------------------------------------
+                         required time                         24.974    
+                         arrival time                         -19.176    
+  -------------------------------------------------------------------
+                         slack                                  5.798    
+
+Slack (MET) :             5.808ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[63]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.850ns  (logic 3.975ns (28.701%)  route 9.875ns (71.299%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.139ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.891ns = ( 24.891 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.802    19.170    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X10Y20         FDCE                                         r  dense_layer/max_val_reg[63]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.499    24.891    dense_layer/clk_IBUF_BUFG
+    SLICE_X10Y20         FDCE                                         r  dense_layer/max_val_reg[63]/C
+                         clock pessimism              0.291    25.182    
+                         clock uncertainty           -0.035    25.146    
+    SLICE_X10Y20         FDCE (Setup_fdce_C_CE)      -0.169    24.977    dense_layer/max_val_reg[63]
+  -------------------------------------------------------------------
+                         required time                         24.977    
+                         arrival time                         -19.170    
+  -------------------------------------------------------------------
+                         slack                                  5.808    
+
+Slack (MET) :             5.853ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[21]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.768ns  (logic 3.975ns (28.871%)  route 9.793ns (71.129%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.139ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.891ns = ( 24.891 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.721    19.089    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X14Y14         FDCE                                         r  dense_layer/max_val_reg[21]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.499    24.891    dense_layer/clk_IBUF_BUFG
+    SLICE_X14Y14         FDCE                                         r  dense_layer/max_val_reg[21]/C
+                         clock pessimism              0.291    25.182    
+                         clock uncertainty           -0.035    25.146    
+    SLICE_X14Y14         FDCE (Setup_fdce_C_CE)      -0.205    24.941    dense_layer/max_val_reg[21]
+  -------------------------------------------------------------------
+                         required time                         24.941    
+                         arrival time                         -19.089    
+  -------------------------------------------------------------------
+                         slack                                  5.853    
+
+Slack (MET) :             5.890ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[12]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.732ns  (logic 3.975ns (28.947%)  route 9.757ns (71.053%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.138ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.892ns = ( 24.892 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.685    19.052    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X14Y12         FDCE                                         r  dense_layer/max_val_reg[12]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.500    24.892    dense_layer/clk_IBUF_BUFG
+    SLICE_X14Y12         FDCE                                         r  dense_layer/max_val_reg[12]/C
+                         clock pessimism              0.291    25.183    
+                         clock uncertainty           -0.035    25.147    
+    SLICE_X14Y12         FDCE (Setup_fdce_C_CE)      -0.205    24.942    dense_layer/max_val_reg[12]
+  -------------------------------------------------------------------
+                         required time                         24.942    
+                         arrival time                         -19.052    
+  -------------------------------------------------------------------
+                         slack                                  5.890    
+
+Slack (MET) :             5.890ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[13]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.732ns  (logic 3.975ns (28.947%)  route 9.757ns (71.053%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.138ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.892ns = ( 24.892 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.685    19.052    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X14Y12         FDCE                                         r  dense_layer/max_val_reg[13]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.500    24.892    dense_layer/clk_IBUF_BUFG
+    SLICE_X14Y12         FDCE                                         r  dense_layer/max_val_reg[13]/C
+                         clock pessimism              0.291    25.183    
+                         clock uncertainty           -0.035    25.147    
+    SLICE_X14Y12         FDCE (Setup_fdce_C_CE)      -0.205    24.942    dense_layer/max_val_reg[13]
+  -------------------------------------------------------------------
+                         required time                         24.942    
+                         arrival time                         -19.052    
+  -------------------------------------------------------------------
+                         slack                                  5.890    
+
+Slack (MET) :             5.890ns  (required time - arrival time)
+  Source:                 dense_layer/compare_idx_reg[0]_rep__1/C
+                            (rising edge-triggered cell FDPE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Destination:            dense_layer/max_val_reg[17]/CE
+                            (rising edge-triggered cell FDCE clocked by sys_clk_pin  {rise@0.000ns fall@10.000ns period=20.000ns})
+  Path Group:             sys_clk_pin
+  Path Type:              Setup (Max at Slow Process Corner)
+  Requirement:            20.000ns  (sys_clk_pin rise@20.000ns - sys_clk_pin rise@0.000ns)
+  Data Path Delay:        13.732ns  (logic 3.975ns (28.947%)  route 9.757ns (71.053%))
+  Logic Levels:           28  (CARRY4=24 LUT3=1 LUT4=1 LUT6=2)
+  Clock Path Skew:        -0.138ns (DCD - SCD + CPR)
+    Destination Clock Delay (DCD):    4.892ns = ( 24.892 - 20.000 ) 
+    Source Clock Delay      (SCD):    5.320ns
+    Clock Pessimism Removal (CPR):    0.291ns
+  Clock Uncertainty:      0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter     (TSJ):    0.071ns
+    Total Input Jitter      (TIJ):    0.000ns
+    Discrete Jitter          (DJ):    0.000ns
+    Phase Error              (PE):    0.000ns
+
+    Location             Delay type                Incr(ns)  Path(ns)    Netlist Resource(s)
+  -------------------------------------------------------------------    -------------------
+                         (clock sys_clk_pin rise edge)
+                                                      0.000     0.000 r  
+    L16                                               0.000     0.000 r  clk (IN)
+                         net (fo=0)                   0.000     0.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.491     1.491 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           2.076     3.567    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.101     3.668 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.652     5.320    dense_layer/clk_IBUF_BUFG
+    SLICE_X23Y24         FDPE                                         r  dense_layer/compare_idx_reg[0]_rep__1/C
+  -------------------------------------------------------------------    -------------------
+    SLICE_X23Y24         FDPE (Prop_fdpe_C_Q)         0.456     5.776 r  dense_layer/compare_idx_reg[0]_rep__1/Q
+                         net (fo=128, routed)         1.386     7.163    dense_layer/compare_idx_reg[0]_rep__1_n_0
+    SLICE_X23Y30         LUT3 (Prop_lut3_I0_O)        0.124     7.287 r  dense_layer/max_val[127]_i_4/O
+                         net (fo=64, routed)          3.191    10.478    dense_layer/max_val[127]_i_4_n_0
+    SLICE_X4Y19          LUT6 (Prop_lut6_I4_O)        0.124    10.602 r  dense_layer/max_val[70]_i_2/O
+                         net (fo=3, routed)           1.746    12.348    dense_layer/max_val[70]_i_2_n_0
+    SLICE_X17Y21         LUT4 (Prop_lut4_I0_O)        0.124    12.472 r  dense_layer/max_val[255]_i_220/O
+                         net (fo=1, routed)           0.000    12.472    dense_layer/max_val[255]_i_220_n_0
+    SLICE_X17Y21         CARRY4 (Prop_carry4_S[3]_CO[3])
+                                                      0.401    12.873 r  dense_layer/max_val_reg[255]_i_206/CO[3]
+                         net (fo=1, routed)           0.000    12.873    dense_layer/max_val_reg[255]_i_206_n_0
+    SLICE_X17Y22         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    12.987 r  dense_layer/max_val_reg[255]_i_197/CO[3]
+                         net (fo=1, routed)           0.000    12.987    dense_layer/max_val_reg[255]_i_197_n_0
+    SLICE_X17Y23         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.101 r  dense_layer/max_val_reg[255]_i_188/CO[3]
+                         net (fo=1, routed)           0.000    13.101    dense_layer/max_val_reg[255]_i_188_n_0
+    SLICE_X17Y24         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.215 r  dense_layer/max_val_reg[255]_i_179/CO[3]
+                         net (fo=1, routed)           0.009    13.224    dense_layer/max_val_reg[255]_i_179_n_0
+    SLICE_X17Y25         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.338 r  dense_layer/max_val_reg[255]_i_170/CO[3]
+                         net (fo=1, routed)           0.000    13.338    dense_layer/max_val_reg[255]_i_170_n_0
+    SLICE_X17Y26         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.452 r  dense_layer/max_val_reg[255]_i_161/CO[3]
+                         net (fo=1, routed)           0.000    13.452    dense_layer/max_val_reg[255]_i_161_n_0
+    SLICE_X17Y27         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.566 r  dense_layer/max_val_reg[255]_i_152/CO[3]
+                         net (fo=1, routed)           0.000    13.566    dense_layer/max_val_reg[255]_i_152_n_0
+    SLICE_X17Y28         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.680 r  dense_layer/max_val_reg[255]_i_143/CO[3]
+                         net (fo=1, routed)           0.000    13.680    dense_layer/max_val_reg[255]_i_143_n_0
+    SLICE_X17Y29         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.794 r  dense_layer/max_val_reg[255]_i_134/CO[3]
+                         net (fo=1, routed)           0.000    13.794    dense_layer/max_val_reg[255]_i_134_n_0
+    SLICE_X17Y30         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    13.908 r  dense_layer/max_val_reg[255]_i_125/CO[3]
+                         net (fo=1, routed)           0.000    13.908    dense_layer/max_val_reg[255]_i_125_n_0
+    SLICE_X17Y31         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.022 r  dense_layer/max_val_reg[255]_i_116/CO[3]
+                         net (fo=1, routed)           0.000    14.022    dense_layer/max_val_reg[255]_i_116_n_0
+    SLICE_X17Y32         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.136 r  dense_layer/max_val_reg[255]_i_107/CO[3]
+                         net (fo=1, routed)           0.000    14.136    dense_layer/max_val_reg[255]_i_107_n_0
+    SLICE_X17Y33         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.250 r  dense_layer/max_val_reg[255]_i_98/CO[3]
+                         net (fo=1, routed)           0.000    14.250    dense_layer/max_val_reg[255]_i_98_n_0
+    SLICE_X17Y34         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.364 r  dense_layer/max_val_reg[255]_i_89/CO[3]
+                         net (fo=1, routed)           0.000    14.364    dense_layer/max_val_reg[255]_i_89_n_0
+    SLICE_X17Y35         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.478 r  dense_layer/max_val_reg[255]_i_80/CO[3]
+                         net (fo=1, routed)           0.000    14.478    dense_layer/max_val_reg[255]_i_80_n_0
+    SLICE_X17Y36         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.592 r  dense_layer/max_val_reg[255]_i_71/CO[3]
+                         net (fo=1, routed)           0.000    14.592    dense_layer/max_val_reg[255]_i_71_n_0
+    SLICE_X17Y37         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.706 r  dense_layer/max_val_reg[255]_i_62/CO[3]
+                         net (fo=1, routed)           0.000    14.706    dense_layer/max_val_reg[255]_i_62_n_0
+    SLICE_X17Y38         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.820 r  dense_layer/max_val_reg[255]_i_53/CO[3]
+                         net (fo=1, routed)           0.000    14.820    dense_layer/max_val_reg[255]_i_53_n_0
+    SLICE_X17Y39         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    14.934 r  dense_layer/max_val_reg[255]_i_44/CO[3]
+                         net (fo=1, routed)           0.000    14.934    dense_layer/max_val_reg[255]_i_44_n_0
+    SLICE_X17Y40         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.048 r  dense_layer/max_val_reg[255]_i_35/CO[3]
+                         net (fo=1, routed)           0.000    15.048    dense_layer/max_val_reg[255]_i_35_n_0
+    SLICE_X17Y41         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.162 r  dense_layer/max_val_reg[255]_i_26/CO[3]
+                         net (fo=1, routed)           0.000    15.162    dense_layer/max_val_reg[255]_i_26_n_0
+    SLICE_X17Y42         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.276 r  dense_layer/max_val_reg[255]_i_17/CO[3]
+                         net (fo=1, routed)           0.000    15.276    dense_layer/max_val_reg[255]_i_17_n_0
+    SLICE_X17Y43         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.390 r  dense_layer/max_val_reg[255]_i_5/CO[3]
+                         net (fo=1, routed)           0.000    15.390    dense_layer/max_val_reg[255]_i_5_n_0
+    SLICE_X17Y44         CARRY4 (Prop_carry4_CI_CO[3])
+                                                      0.114    15.504 r  dense_layer/max_val_reg[255]_i_3/CO[3]
+                         net (fo=1, routed)           0.740    16.244    dense_layer/max_val_reg[255]_i_3_n_0
+    SLICE_X18Y43         LUT6 (Prop_lut6_I4_O)        0.124    16.368 r  dense_layer/max_val[255]_i_1/O
+                         net (fo=254, routed)         2.685    19.052    dense_layer/max_val[255]_i_1_n_0
+    SLICE_X14Y12         FDCE                                         r  dense_layer/max_val_reg[17]/CE
+  -------------------------------------------------------------------    -------------------
+
+                         (clock sys_clk_pin rise edge)
+                                                     20.000    20.000 r  
+    L16                                               0.000    20.000 r  clk (IN)
+                         net (fo=0)                   0.000    20.000    clk
+    L16                  IBUF (Prop_ibuf_I_O)         1.421    21.421 r  clk_IBUF_inst/O
+                         net (fo=1, routed)           1.880    23.301    clk_IBUF
+    BUFGCTRL_X0Y16       BUFG (Prop_bufg_I_O)         0.091    23.392 r  clk_IBUF_BUFG_inst/O
+                         net (fo=3472, routed)        1.500    24.892    dense_layer/clk_IBUF_BUFG
+    SLICE_X14Y12         FDCE                                         r  dense_layer/max_val_reg[17]/C
+                         clock pessimism              0.291    25.183    
+                         clock uncertainty           -0.035    25.147    
+    SLICE_X14Y12         FDCE (Setup_fdce_C_CE)      -0.205    24.942    dense_layer/max_val_reg[17]
+  -------------------------------------------------------------------
+                         required time                         24.942    
+                         arrival time                         -19.052    
+  -------------------------------------------------------------------
+                         slack                                  5.890    
+
+
+
+
