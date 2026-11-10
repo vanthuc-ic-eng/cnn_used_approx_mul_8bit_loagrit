@@ -12,9 +12,10 @@
 // ==============================================================================
 
 module log8_nano_mul_core #(
-    parameter integer MODE      = 0,
-    parameter integer IS_LOG8_A = 1,
-    parameter integer IS_LOG8_B = 1
+    parameter integer MODE       = 0,
+    parameter integer IS_LOG8_A  = 1,
+    parameter integer IS_LOG8_B  = 1,
+    parameter integer ROUND_BIAS = 0   // 0: Standard (4'b0000), 1: V10 Biased (4'b1111)
 )(
     input  wire signed [7:0]  a_i,
     input  wire signed [7:0]  b_i,
@@ -60,9 +61,10 @@ module log8_nano_mul_core #(
     wire [3:0] log_b_iso = z_prod ? 4'b0000 : log_b;
     wire [4:0] log_sum   = log_a_iso + log_b_iso;
 
-    wire [3:0] exp_w   = log_sum[4:1];
-    wire       frac_w  = log_sum[0];
-    wire [5:0] mant_w  = {1'b1, frac_w, 4'b0000}; // 6-bit mantissa
+    wire [3:0] exp_w       = log_sum[4:1];
+    wire       frac_w      = log_sum[0];
+    wire [3:0] bias_nibble = ROUND_BIAS ? 4'b1111 : 4'b0000;
+    wire [5:0] mant_w      = {1'b1, frac_w, bias_nibble}; // 6-bit mantissa (V10 Biased if ROUND_BIAS=1)
 
     // 10-bit Antilog Barrel Shifter (0 CARRY4)
     reg [9:0] raw_trunc;

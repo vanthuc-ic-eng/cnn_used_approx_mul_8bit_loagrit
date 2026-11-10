@@ -10,9 +10,10 @@
 // ==============================================================================
 
 module TheMultiplier #(
-    parameter integer MODE      = 2,
-    parameter integer IS_LOG8_A = 0,
-    parameter integer IS_LOG8_B = 1
+    parameter integer MODE       = 2,
+    parameter integer IS_LOG8_A  = 0,
+    parameter integer IS_LOG8_B  = 1,
+    parameter integer ROUND_BIAS = 0
 )(
     input  wire signed [7:0]  a,
     input  wire signed [7:0]  b,
@@ -22,7 +23,8 @@ module TheMultiplier #(
     log8_nano_mul_core #(
         .MODE(MODE),
         .IS_LOG8_A(IS_LOG8_A),
-        .IS_LOG8_B(IS_LOG8_B)
+        .IS_LOG8_B(IS_LOG8_B),
+        .ROUND_BIAS(ROUND_BIAS)
     ) u_log8_nano_core (
         .a_i(a),
         .b_i(b),

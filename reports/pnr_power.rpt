@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-| Date             : Wed Nov 11 00:04:34 2026
+| Date             : Wed Nov 11 00:47:57 2026
 | Host             : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
 | Command          : report_power -file reports/pnr_power.rpt
 | Design           : top_cnn
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.116        |
+| Total On-Chip Power (W)  | 0.115        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.024        |
+| Dynamic (W)              | 0.023        |
 | Device Static (W)        | 0.092        |
 | Effective TJA (C/W)      | 11.5         |
 | Max Ambient (C)          | 83.7         |
@@ -54,16 +54,16 @@ Table of Contents
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |     0.004 |        3 |       --- |             --- |
 | Slice Logic    |     0.004 |     7800 |       --- |             --- |
-|   LUT as Logic |     0.003 |     3502 |     17600 |           19.90 |
+|   LUT as Logic |     0.003 |     3501 |     17600 |           19.89 |
 |   CARRY4       |    <0.001 |      221 |      4400 |            5.02 |
 |   Register     |    <0.001 |     3467 |     35200 |            9.85 |
 |   F7/F8 Muxes  |    <0.001 |       11 |     17600 |            0.06 |
 |   Others       |     0.000 |       29 |       --- |             --- |
-| Signals        |     0.012 |     6806 |       --- |             --- |
+| Signals        |     0.011 |     6808 |       --- |             --- |
 | Block RAM      |     0.004 |      3.5 |        60 |            5.83 |
 | I/O            |    <0.001 |       17 |       100 |           17.00 |
 | Static Power   |     0.092 |          |           |                 |
-| Total          |     0.116 |          |           |                 |
+| Total          |     0.115 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -149,7 +149,7 @@ Table of Contents
 +-----------------+-----------+
 | Name            | Power (W) |
 +-----------------+-----------+
-| top_cnn         |     0.024 |
+| top_cnn         |     0.023 |
 |   bram_28x28x32 |     0.001 |
 |   conv          |     0.001 |
 |   dense_layer   |     0.016 |
