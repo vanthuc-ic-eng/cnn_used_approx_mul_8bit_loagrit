@@ -1,0 +1,41 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Wed Nov 11 01:57:07 2026
+| Host         : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
+| Command      : report_high_fanout_nets -fanout_greater_than 10 -max_nets 20 -file reports/high_fanout_nets.rpt
+| Design       : top_cnn
+| Device       : xc7z010
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+High Fan-out Nets Information
+
+1. Summary
+----------
+
++------------------------------------------+--------+-------------+
+| Net Name                                 | Fanout | Driver Type |
++------------------------------------------+--------+-------------+
+| reset_IBUF                               |   3462 | IBUF        |
+| dense_layer/index_reg_n_0_[1]            |    522 | FDCE        |
+| dense_layer/compare_idx_reg_n_0_[1]      |    507 | FDCE        |
+| dense_layer/index_reg_n_0_[3]            |    270 | FDCE        |
+| dense_layer/FSM_onehot_state_reg_n_0_[9] |    265 | FDCE        |
+| dense_layer/FSM_onehot_state_reg_n_0_[6] |    262 | FDCE        |
+| dense_layer/compare_idx_reg_n_0_[3]      |    259 | FDCE        |
+| dense_layer/FSM_onehot_state_reg_n_0_[8] |    258 | FDCE        |
+| dense_layer/max_val[255]_i_1_n_0         |    254 | LUT6        |
+| dense_layer/neuron[1][255]_i_22_n_0      |    253 | LUT3        |
+| dense_layer/neuron[1][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[2][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[0][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[9][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[8][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[6][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[4][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[5][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[3][255]_i_1_n_0       |    250 | LUT6        |
+| dense_layer/neuron[7][255]_i_1_n_0       |    250 | LUT6        |
++------------------------------------------+--------+-------------+
+
+

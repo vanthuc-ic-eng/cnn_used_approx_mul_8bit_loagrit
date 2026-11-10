@@ -1,0 +1,5 @@
+toggle_rate_pct,dynamic_power_w,logic_power_w,signals_power_w
+5.0,0.024,N/A,N/A
+12.5,0.024,N/A,N/A
+25.0,0.024,N/A,N/A
+50.0,0.024,N/A,N/A
