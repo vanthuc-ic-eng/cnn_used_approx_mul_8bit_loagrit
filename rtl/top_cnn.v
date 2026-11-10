@@ -29,16 +29,9 @@ module top_cnn(
     output reg ready, calculating, //DONE
     output wire [3:0] predict
 );
-    /*QUY UOC: DIN la DATA vao Module do'
-               DOUT la DATA ra khoi Module do'
-   */
-    /* Assign a = b Khac' Assign b = a
-    
-    assign <output> = <nguon dieu khien>
-    VD: assign a = b nghia la a bi dieu khien boi b
-        assign b = a nghia la b bi dieu khien boi a
-    => assign khong phai la 2 chieu, ma la 1 CHIEU`
-    */       
+    // Signal Naming Convention:
+    //   DIN  : Data input to the respective submodule
+    //   DOUT : Data output from the respective submodule       
     
     //===========================PRE_PROCESSING=============================
         //WRITE-ONLY (TO 30x30x8)
@@ -289,8 +282,8 @@ module top_cnn(
                             kernel_counter <= kernel_counter + 1; 
                             state <= CONVOLUTION_STATE;
                         end
-              /* Dung 1 kernel_counter de xet viec co cho ve CONVOLUTION_STATE chay tiep hay khong. Boi vi done_all_controller den muon. hon
-              done_max_pooling_3x3 tan. 2 chu ky` xung nen moi phai viet dieu` kien. nhu vay. */
+              // kernel_counter tracks kernel iterations (0 to 3) before transitioning to DENSE_STATE.
+              // This evaluation resolves the 2-cycle latency offset between done_max_pooling_3x3 and done_all_controller.
                     end
                 end
                 
