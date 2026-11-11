@@ -8,7 +8,7 @@ SHELL := /bin/bash
 NUM_IMAGES ?= 10
 REPORT_DIR ?= reports
 
-.PHONY: sim sim-full eval fpga clean help report
+.PHONY: all sim sim-full eval fpga report excel clean help
 
 help:
 	@echo "================================================================================"
@@ -19,7 +19,9 @@ help:
 	@echo "   make sim-full              Run Vivado xsim simulation for all 1000 images"
 	@echo "   make eval                  Evaluate prediction accuracy vs ground truth"
 	@echo "   make fpga                  Run AMD Vivado Physical Implementation (P&R + Sign-off)"
-	@echo "   make report                Display physical implementation summary"
+	@echo "   make report                Parse all PPA & Accuracy reports and auto-generate summary"
+	@echo "   make excel                 Generate dynamic 2-sheet Excel verification workbooks"
+	@echo "   make all                   Run full 1000-image simulation, P&R, and report pipeline"
 	@echo "   make clean                 Clean simulation and build artifacts"
 	@echo "================================================================================"
 
@@ -47,7 +49,12 @@ fpga:
 	@grep -A 8 "Design Timing Summary" $(REPORT_DIR)/pnr_timing.rpt || true
 
 report:
-	@if [ -f $(REPORT_DIR)/summary.rpt ]; then cat $(REPORT_DIR)/summary.rpt; fi
+	@python3 scripts/parse_summary.py
+
+excel:
+	@python3 scripts/gen_excel_report.py
+
+all: sim-full fpga report
 
 clean:
 	@rm -rf xsim.dir .Xil results *.jou *.log *.pb clockInfo.txt
