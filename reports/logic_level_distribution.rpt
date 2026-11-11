@@ -1,0 +1,29 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
+| Date         : Wed Nov 11 16:17:51 2026
+| Host         : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
+| Command      : report_design_analysis -logic_level_distribution -file reports/logic_level_distribution.rpt
+| Design       : top_cnn
+| Device       : xc7z010
+| Design State : Routed
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Report Design Analysis
+
+Table of Contents
+-----------------
+1. Logic Level Distribution
+
+1. Logic Level Distribution
+---------------------------
+
++-----------------+-------------+----+----+----+-----+
+| End Point Clock | Requirement | 37 | 40 | 41 |  42 |
++-----------------+-------------+----+----+----+-----+
+| sys_clk_pin     | 20.000ns    |  9 | 14 |  2 | 975 |
++-----------------+-------------+----+----+----+-----+
+* Columns represent the logic levels per end point clock
+** Distribution is for top worst 1000 paths
+
+

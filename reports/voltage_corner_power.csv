@@ -1,0 +1,4 @@
+vccint_v,total_power_w,dynamic_power_w,static_power_w
+0.95,0.117,0.025,0.091
+1.00,0.120,0.028,0.092
+1.05,0.123,0.031,0.093

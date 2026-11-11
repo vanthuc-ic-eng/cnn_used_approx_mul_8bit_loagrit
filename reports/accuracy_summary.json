@@ -10,13 +10,13 @@
   "accuracy_delta_pct": 0.0,
   "matches_vs_baseline": 1000,
   "match_rate_vs_baseline_pct": 100.0,
-  "pnr_slice_luts": 4728,
+  "pnr_slice_luts": 4725,
   "pnr_slice_registers": 3595,
   "pnr_carry4": 230,
   "pnr_bram_tiles": 3.5,
   "pnr_dsp": 0,
-  "pnr_wns_ns": 1.019,
-  "pnr_fmax_mhz": 52.68,
-  "pnr_dynamic_power_w": 0.024,
-  "pnr_total_power_w": 0.115
+  "pnr_wns_ns": 0.713,
+  "pnr_fmax_mhz": 51.85,
+  "pnr_dynamic_power_w": 0.028,
+  "pnr_total_power_w": 0.12
 }
