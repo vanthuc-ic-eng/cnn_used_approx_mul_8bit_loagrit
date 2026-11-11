@@ -47,15 +47,15 @@ module convolution_unit (
     assign kernel[7] = kernel_weights[63:56];
     assign kernel[8] = kernel_weights[71:64];
 
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult0 (pixel[0], kernel[0], mult_out[0]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult1 (pixel[1], kernel[1], mult_out[1]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult2 (pixel[2], kernel[2], mult_out[2]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult3 (pixel[3], kernel[3], mult_out[3]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult4 (pixel[4], kernel[4], mult_out[4]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult5 (pixel[5], kernel[5], mult_out[5]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult6 (pixel[6], kernel[6], mult_out[6]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult7 (pixel[7], kernel[7], mult_out[7]);
-    TheMultiplier #(.IS_LOG8_A(1), .IS_LOG8_B(1)) mult8 (pixel[8], kernel[8], mult_out[8]);
+    TheMultiplier mult0 (pixel[0], kernel[0], mult_out[0]);
+    TheMultiplier mult1 (pixel[1], kernel[1], mult_out[1]);
+    TheMultiplier mult2 (pixel[2], kernel[2], mult_out[2]);
+    TheMultiplier mult3 (pixel[3], kernel[3], mult_out[3]);
+    TheMultiplier mult4 (pixel[4], kernel[4], mult_out[4]);
+    TheMultiplier mult5 (pixel[5], kernel[5], mult_out[5]);
+    TheMultiplier mult6 (pixel[6], kernel[6], mult_out[6]);
+    TheMultiplier mult7 (pixel[7], kernel[7], mult_out[7]);
+    TheMultiplier mult8 (pixel[8], kernel[8], mult_out[8]);
 
     assign conv_out = mult_out[0] + mult_out[1] + mult_out[2] +
                       mult_out[3] + mult_out[4] + mult_out[5] +

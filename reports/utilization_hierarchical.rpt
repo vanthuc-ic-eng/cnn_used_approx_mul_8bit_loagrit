@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2024.2 (lin64) Build 5239630 Fri Nov 08 22:34:34 MST 2024
-| Date         : Wed Nov 11 01:56:54 2026
+| Date         : Wed Nov 11 15:47:06 2026
 | Host         : ic-workstation running 64-bit Ubuntu 24.04.5 LTS
 | Command      : report_utilization -hierarchical -file reports/utilization_hierarchical.rpt
 | Design       : top_cnn
@@ -22,26 +22,24 @@ Table of Contents
 +---------------------+----------------------+------------+------------+---------+------+------+--------+--------+------------+
 |       Instance      |        Module        | Total LUTs | Logic LUTs | LUTRAMs | SRLs |  FFs | RAMB36 | RAMB18 | DSP Blocks |
 +---------------------+----------------------+------------+------------+---------+------+------+--------+--------+------------+
-| top_cnn             |                (top) |       3502 |       3502 |       0 |    0 | 3467 |      2 |      3 |          0 |
+| top_cnn             |                (top) |       3940 |       3940 |       0 |    0 | 3543 |      2 |      3 |          0 |
 |   (top_cnn)         |                (top) |          2 |          2 |       0 |    0 |   22 |      0 |      0 |          0 |
-|   bram_28x28x32     | bram_output_28x28x32 |         32 |         32 |       0 |    0 |    0 |      1 |      0 |          0 |
+|   bram_28x28x32     | bram_output_28x28x32 |         48 |         48 |       0 |    0 |    0 |      1 |      0 |          0 |
 |   bram_28x28x8      |  bram_output_28x28x8 |          0 |          0 |       0 |    0 |    0 |      0 |      1 |          0 |
-|   conv              |   convolution_kernel |        483 |        483 |       0 |    0 |  201 |      0 |      0 |          0 |
-|     (conv)          |   convolution_kernel |        270 |        270 |       0 |    0 |  201 |      0 |      0 |          0 |
-|     conv_unit       |     convolution_unit |        213 |        213 |       0 |    0 |    0 |      0 |      0 |          0 |
-|   conv_rom          |    conv2d_kernel_rom |          8 |          8 |       0 |    0 |    5 |      0 |      0 |          0 |
-|   ctrl              |           controller |         10 |         10 |       0 |    0 |    8 |      0 |      0 |          0 |
-|   dense_layer       |                dense |       2472 |       2472 |       0 |    0 | 2829 |      0 |      0 |          0 |
+|   conv              |   convolution_kernel |        886 |        886 |       0 |    0 |  250 |      0 |      0 |          0 |
+|   conv_rom          |    conv2d_kernel_rom |          0 |          0 |       0 |    0 |    8 |      0 |      0 |          0 |
+|   ctrl              |           controller |         11 |         11 |       0 |    0 |    8 |      0 |      0 |          0 |
+|   dense_layer       |                dense |       2519 |       2519 |       0 |    0 | 2853 |      0 |      0 |          0 |
 |   dense_rom         |    dense_weights_rom |          0 |          0 |       0 |    0 |    0 |      1 |      0 |          0 |
 |   flatten_bram      | bram_flatten_9x9x4x8 |          0 |          0 |       0 |    0 |    0 |      0 |      1 |          0 |
-|   img_padded_bram   |   bram_image_30x30x8 |          3 |          3 |       0 |    0 |    0 |      0 |      1 |          0 |
-|   max_pooling_layer |      max_pooling_3x3 |        133 |        133 |       0 |    0 |  174 |      0 |      0 |          0 |
-|   pre               |       pre_processing |        143 |        143 |       0 |    0 |   53 |      0 |      0 |          0 |
-|   relu_activation   |            relu_bram |         24 |         24 |       0 |    0 |   25 |      0 |      0 |          0 |
-|   rq                |          requantizer |        209 |        209 |       0 |    0 |  150 |      0 |      0 |          0 |
-|     (rq)            |          requantizer |         61 |         61 |       0 |    0 |  104 |      0 |      0 |          0 |
+|   img_padded_bram   |   bram_image_30x30x8 |          0 |          0 |       0 |    0 |    0 |      0 |      1 |          0 |
+|   max_pooling_layer |      max_pooling_3x3 |        131 |        131 |       0 |    0 |  174 |      0 |      0 |          0 |
+|   pre               |       pre_processing |        138 |        138 |       0 |    0 |   53 |      0 |      0 |          0 |
+|   relu_activation   |            relu_bram |         23 |         23 |       0 |    0 |   25 |      0 |      0 |          0 |
+|   rq                |          requantizer |        199 |        199 |       0 |    0 |  150 |      0 |      0 |          0 |
+|     (rq)            |          requantizer |         63 |         63 |       0 |    0 |  104 |      0 |      0 |          0 |
 |     core            |     requantizer_unit |         92 |         92 |       0 |    0 |    0 |      0 |      0 |          0 |
-|     max_unit        |           max_finder |         57 |         57 |       0 |    0 |   46 |      0 |      0 |          0 |
+|     max_unit        |           max_finder |         45 |         45 |       0 |    0 |   46 |      0 |      0 |          0 |
 +---------------------+----------------------+------------+------------+---------+------+------+--------+--------+------------+
 * Note: The sum of lower-level cells may be larger than their parent cells total, due to cross-hierarchy LUT combining
 
